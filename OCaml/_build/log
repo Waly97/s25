@@ -1,0 +1,16 @@
+# dune buil do.sh
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /Users/walyfall/.cache/dune/db
+# Workspace root: /Users/walyfall/Desktop/Stages/code/s25/OCaml
+# Auto-detected concurrency: 8
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /Users/walyfall/.opam/4.14.2/bin/ocamlc.opt -config > /var/folders/89/jzvpfl2d2l76qtd06vq88xl00000gn/T/dune_2da5b7_output
