@@ -1,1 +1,3035 @@
-{"learner":{"attributes":{},"feature_names":[],"feature_types":[],"gradient_booster":{"model":{"gbtree_model_param":{"num_parallel_tree":"1","num_trees":"52"},"iteration_indptr":[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52],"tree_info":[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1],"trees":[{"base_weights":[-3.69863E-1,-2.9405943E-1,2.8723407E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":0,"left_children":[1,-1,-1],"loss_changes":[6.0076054E1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-2.9405943E-1,2.8723407E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[7.2E1,4.95E1,2.25E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[3.69863E-1,-2.8723407E-1,2.9405943E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":1,"left_children":[1,-1,-1],"loss_changes":[6.0076054E1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-2.8723407E-1,2.9405943E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[7.2E1,2.25E1,4.95E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-2.848426E-1,-2.2828348E-1,2.2366695E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":2,"left_children":[1,-1,-1],"loss_changes":[3.3532066E1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-2.2828348E-1,2.2366695E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[6.619607E1,4.5454865E1,2.07412E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[2.8484255E-1,-2.2366695E-1,2.2828346E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":3,"left_children":[1,-1,-1],"loss_changes":[3.353206E1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-2.2366695E-1,2.2828346E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[6.619607E1,2.07412E1,4.5454865E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-2.446202E-1,-1.9758688E-1,1.9297485E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":4,"left_children":[1,-1,-1],"loss_changes":[2.1241472E1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.9758688E-1,1.9297485E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[5.5634712E1,3.8118652E1,1.751606E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[2.4462023E-1,-1.9297487E-1,1.9758688E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":5,"left_children":[1,-1,-1],"loss_changes":[2.124147E1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-1.9297487E-1,1.9758688E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[5.563471E1,1.7516058E1,3.8118652E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-2.2055131E-1,-1.7968439E-1,1.744327E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":6,"left_children":[1,-1,-1],"loss_changes":[1.4271184E1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.7968439E-1,1.744327E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[4.487885E1,3.0664093E1,1.4214756E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[2.205513E-1,-1.744327E-1,1.7968439E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":7,"left_children":[1,-1,-1],"loss_changes":[1.4271182E1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-1.744327E-1,1.7968439E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[4.487884E1,1.4214754E1,3.0664087E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-2.0398164E-1,-1.6785365E-1,1.6159248E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":8,"left_children":[1,-1,-1],"loss_changes":[9.915735E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.6785365E-1,1.6159248E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[3.5414555E1,2.4115732E1,1.1298821E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[2.039817E-1,-1.6159245E-1,1.6785362E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":9,"left_children":[1,-1,-1],"loss_changes":[9.915732E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-1.6159245E-1,1.6785362E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[3.541455E1,1.1298818E1,2.4115732E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-1.912109E-1,-1.5923351E-1,1.5167503E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":10,"left_children":[1,-1,-1],"loss_changes":[7.037782E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.5923351E-1,1.5167503E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[2.7610237E1,1.872384E1,8.886397E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[1.9121075E-1,-1.5167503E-1,1.592335E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":11,"left_children":[1,-1,-1],"loss_changes":[7.0377812E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-1.5167503E-1,1.592335E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[2.7610226E1,8.886396E0,1.872383E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-1.8032227E-1,-1.5234818E-1,1.4325579E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":12,"left_children":[1,-1,-1],"loss_changes":[5.068029E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.5234818E-1,1.4325579E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[2.1397835E1,1.4437965E1,6.959869E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[1.8032211E-1,-1.432558E-1,1.5234818E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":13,"left_children":[1,-1,-1],"loss_changes":[5.0680304E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-1.432558E-1,1.5234818E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[2.1397835E1,6.959872E0,1.4437963E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-1.7020027E-1,-1.4633216E-1,1.3553639E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":14,"left_children":[1,-1,-1],"loss_changes":[3.6881452E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.4633216E-1,1.3553639E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[1.6555952E1,1.1102859E1,5.453094E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[1.7020017E-1,-1.3553639E-1,1.4633216E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":15,"left_children":[1,-1,-1],"loss_changes":[3.6881454E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-1.3553639E-1,1.4633216E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[1.655595E1,5.453095E0,1.1102856E1],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-1.6016583E-1,-1.4063504E-1,1.2806657E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":16,"left_children":[1,-1,-1],"loss_changes":[2.7060552E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.4063504E-1,1.2806657E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[1.2831559E1,8.5422945E0,4.289265E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[1.601655E-1,-1.2806657E-1,1.4063501E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":17,"left_children":[1,-1,-1],"loss_changes":[2.7060552E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-1.2806657E-1,1.4063501E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[1.2831552E1,4.289266E0,8.542285E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-1.4982845E-1,-1.348979E-1,1.20621525E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":18,"left_children":[1,-1,-1],"loss_changes":[1.9993618E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.348979E-1,1.20621525E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[9.989848E0,6.593205E0,3.3966436E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[1.498283E-1,-1.20621525E-1,1.348979E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":19,"left_children":[1,-1,-1],"loss_changes":[1.9993608E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-1.20621525E-1,1.348979E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[9.989842E0,3.3966432E0,6.5931997E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-1.3902502E-1,-1.2890156E-1,1.1313458E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":20,"left_children":[1,-1,-1],"loss_changes":[1.4868675E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.2890156E-1,1.1313458E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[7.831356E0,5.117269E0,2.714087E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[1.390244E-1,-1.1313462E-1,1.2890151E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":21,"left_children":[1,-1,-1],"loss_changes":[1.4868678E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-1.1313462E-1,1.2890151E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[7.8313518E0,2.7140903E0,5.1172614E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-1.277817E-1,-1.22544445E-1,1.0564719E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":22,"left_children":[1,-1,-1],"loss_changes":[1.1130905E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.22544445E-1,1.0564719E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[6.194549E0,4.0025086E0,2.1920407E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[1.2778169E-1,-1.0564719E-1,1.2254446E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":23,"left_children":[1,-1,-1],"loss_changes":[1.1130908E0,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-1.0564719E-1,1.2254446E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[6.19455E0,2.192041E0,4.002509E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-1.1627693E-1,-1.1582881E-1,9.826283E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":24,"left_children":[1,-1,-1],"loss_changes":[8.39262E-1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.1582881E-1,9.826283E-2],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[4.9523425E0,3.160802E0,1.7915407E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[1.1627653E-1,-9.8262876E-2,1.158288E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":25,"left_children":[1,-1,-1],"loss_changes":[8.3926255E-1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-9.8262876E-2,1.158288E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[4.952342E0,1.791543E0,3.1607993E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-1.0478433E-1,-1.08841784E-1,9.110641E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":26,"left_children":[1,-1,-1],"loss_changes":[6.378631E-1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.08841784E-1,9.110641E-2],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[4.0067344E0,2.524114E0,1.4826207E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[1.0478346E-1,-9.1106564E-2,1.0884178E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":27,"left_children":[1,-1,-1],"loss_changes":[6.378649E-1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-9.1106564E-2,1.0884178E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[4.0067396E0,1.4826269E0,2.5241125E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-9.360821E-2,-1.01727836E-1,8.4293194E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":28,"left_children":[1,-1,-1],"loss_changes":[4.8914158E-1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-1.01727836E-1,8.4293194E-2],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[3.2832289E0,2.0406446E0,1.2425841E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[9.360896E-2,-8.429314E-2,1.0172791E-1],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":29,"left_children":[1,-1,-1],"loss_changes":[4.891416E-1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-8.429314E-2,1.0172791E-1],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[3.2832317E0,1.2425821E0,2.0406497E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-8.303E-2,-9.46551E-2,7.790896E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":30,"left_children":[1,-1,-1],"loss_changes":[3.7880513E-1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[1.88E6,-9.46551E-2,7.790896E-2],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[2.725759E0,1.6713785E0,1.0543804E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[8.30288E-2,-7.790903E-2,9.465492E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":31,"left_children":[1,-1,-1],"loss_changes":[3.788044E-1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[-1E-5,-7.790903E-2,9.465492E-2],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[2.7257526E0,1.0543821E0,1.6713704E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-7.3257506E-2,-8.507238E-2,6.1084658E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0,0,0],"id":32,"left_children":[1,-1,-1],"loss_changes":[2.4946792E-1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[4.5E5,-8.507238E-2,6.1084658E-2],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[2.2925298E0,1.2891026E0,1.0034274E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[7.32583E-2,-6.108467E-2,8.507262E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[1,0,0],"id":33,"left_children":[1,-1,-1],"loss_changes":[2.4946928E-1,0E0,0E0],"parents":[2147483647,0,0],"right_children":[2,-1,-1],"split_conditions":[2.1E5,-6.108467E-2,8.507262E-2],"split_indices":[5,0,0],"split_type":[0,0,0],"sum_hessian":[2.29254E0,1.0034297E0,1.2891103E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"3","size_leaf_vector":"1"}},{"base_weights":[-6.5873034E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":34,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[-1.976191E-2],"split_indices":[0],"split_type":[0],"sum_hessian":[2.001579E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[6.587096E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":35,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[1.976129E-2],"split_indices":[0],"split_type":[0],"sum_hessian":[2.0015767E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[-5.2992005E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":36,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[-1.5897602E-2],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9874549E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[5.299189E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":37,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[1.5897568E-2],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9874572E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[-4.2571843E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":38,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[-1.2771553E-2],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9782494E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[4.2570744E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":39,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[1.2771224E-2],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9782381E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[-3.4171004E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":40,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[-1.0251301E-2],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9722362E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[3.417264E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":41,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[1.0251792E-2],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9722425E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[-2.7412545E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":42,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[-8.223764E-3],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9682959E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[2.741132E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":43,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[8.223396E-3],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9682915E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[-2.1983333E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":44,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[-6.595E-3],"split_indices":[0],"split_type":[0],"sum_hessian":[1.965703E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[2.1982156E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":45,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[6.594647E-3],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9657112E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[-1.7623538E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":46,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[-5.2870614E-3],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9640001E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[1.7624395E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":47,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[5.2873185E-3],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9640112E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[-1.4125661E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":48,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[-4.2376984E-3],"split_indices":[0],"split_type":[0],"sum_hessian":[1.962871E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[1.4125729E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":49,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[4.237719E-3],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9628668E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[-1.1322647E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":50,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[-3.3967944E-3],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9621083E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}},{"base_weights":[1.1320966E-2],"categories":[],"categories_nodes":[],"categories_segments":[],"categories_sizes":[],"default_left":[0],"id":51,"left_children":[-1],"loss_changes":[0E0],"parents":[2147483647],"right_children":[-1],"split_conditions":[3.3962901E-3],"split_indices":[0],"split_type":[0],"sum_hessian":[1.9621047E0],"tree_param":{"num_deleted":"0","num_feature":"15","num_nodes":"1","size_leaf_vector":"1"}}]},"name":"gbtree"},"learner_model_param":{"base_score":"5E-1","boost_from_average":"1","num_class":"2","num_feature":"15","num_target":"1"},"objective":{"name":"multi:softmax","softmax_multiclass_param":{"num_class":"2"}}},"version":[3,0,0]}
+{
+    "learner": {
+        "attributes": {},
+        "feature_names": [],
+        "feature_types": [],
+        "gradient_booster": {
+            "model": {
+                "gbtree_model_param": {
+                    "num_parallel_tree": "1",
+                    "num_trees": "52"
+                },
+                "iteration_indptr": [
+                    0,
+                    2,
+                    4,
+                    6,
+                    8,
+                    10,
+                    12,
+                    14,
+                    16,
+                    18,
+                    20,
+                    22,
+                    24,
+                    26,
+                    28,
+                    30,
+                    32,
+                    34,
+                    36,
+                    38,
+                    40,
+                    42,
+                    44,
+                    46,
+                    48,
+                    50,
+                    52
+                ],
+                "tree_info": [
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    1
+                ],
+                "trees": [
+                    {
+                        "base_weights": [
+                            -3.69863E-1,
+                            -2.9405943E-1,
+                            2.8723407E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 0,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            6.0076054E1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -2.9405943E-1,
+                            2.8723407E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            7.2E1,
+                            4.95E1,
+                            2.25E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            3.69863E-1,
+                            -2.8723407E-1,
+                            2.9405943E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 1,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            6.0076054E1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -2.8723407E-1,
+                            2.9405943E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            7.2E1,
+                            2.25E1,
+                            4.95E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -2.848426E-1,
+                            -2.2828348E-1,
+                            2.2366695E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 2,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            3.3532066E1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -2.2828348E-1,
+                            2.2366695E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            6.619607E1,
+                            4.5454865E1,
+                            2.07412E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            2.8484255E-1,
+                            -2.2366695E-1,
+                            2.2828346E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 3,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            3.353206E1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -2.2366695E-1,
+                            2.2828346E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            6.619607E1,
+                            2.07412E1,
+                            4.5454865E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -2.446202E-1,
+                            -1.9758688E-1,
+                            1.9297485E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 4,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            2.1241472E1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.9758688E-1,
+                            1.9297485E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            5.5634712E1,
+                            3.8118652E1,
+                            1.751606E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            2.4462023E-1,
+                            -1.9297487E-1,
+                            1.9758688E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 5,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            2.124147E1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -1.9297487E-1,
+                            1.9758688E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            5.563471E1,
+                            1.7516058E1,
+                            3.8118652E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -2.2055131E-1,
+                            -1.7968439E-1,
+                            1.744327E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 6,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            1.4271184E1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.7968439E-1,
+                            1.744327E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            4.487885E1,
+                            3.0664093E1,
+                            1.4214756E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            2.205513E-1,
+                            -1.744327E-1,
+                            1.7968439E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 7,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            1.4271182E1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -1.744327E-1,
+                            1.7968439E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            4.487884E1,
+                            1.4214754E1,
+                            3.0664087E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -2.0398164E-1,
+                            -1.6785365E-1,
+                            1.6159248E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 8,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            9.915735E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.6785365E-1,
+                            1.6159248E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            3.5414555E1,
+                            2.4115732E1,
+                            1.1298821E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            2.039817E-1,
+                            -1.6159245E-1,
+                            1.6785362E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 9,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            9.915732E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -1.6159245E-1,
+                            1.6785362E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            3.541455E1,
+                            1.1298818E1,
+                            2.4115732E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -1.912109E-1,
+                            -1.5923351E-1,
+                            1.5167503E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 10,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            7.037782E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.5923351E-1,
+                            1.5167503E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            2.7610237E1,
+                            1.872384E1,
+                            8.886397E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            1.9121075E-1,
+                            -1.5167503E-1,
+                            1.592335E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 11,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            7.0377812E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -1.5167503E-1,
+                            1.592335E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            2.7610226E1,
+                            8.886396E0,
+                            1.872383E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -1.8032227E-1,
+                            -1.5234818E-1,
+                            1.4325579E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 12,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            5.068029E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.5234818E-1,
+                            1.4325579E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            2.1397835E1,
+                            1.4437965E1,
+                            6.959869E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            1.8032211E-1,
+                            -1.432558E-1,
+                            1.5234818E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 13,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            5.0680304E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -1.432558E-1,
+                            1.5234818E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            2.1397835E1,
+                            6.959872E0,
+                            1.4437963E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -1.7020027E-1,
+                            -1.4633216E-1,
+                            1.3553639E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 14,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            3.6881452E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.4633216E-1,
+                            1.3553639E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.6555952E1,
+                            1.1102859E1,
+                            5.453094E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            1.7020017E-1,
+                            -1.3553639E-1,
+                            1.4633216E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 15,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            3.6881454E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -1.3553639E-1,
+                            1.4633216E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.655595E1,
+                            5.453095E0,
+                            1.1102856E1
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -1.6016583E-1,
+                            -1.4063504E-1,
+                            1.2806657E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 16,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            2.7060552E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.4063504E-1,
+                            1.2806657E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.2831559E1,
+                            8.5422945E0,
+                            4.289265E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            1.601655E-1,
+                            -1.2806657E-1,
+                            1.4063501E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 17,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            2.7060552E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -1.2806657E-1,
+                            1.4063501E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.2831552E1,
+                            4.289266E0,
+                            8.542285E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -1.4982845E-1,
+                            -1.348979E-1,
+                            1.20621525E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 18,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            1.9993618E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.348979E-1,
+                            1.20621525E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            9.989848E0,
+                            6.593205E0,
+                            3.3966436E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            1.498283E-1,
+                            -1.20621525E-1,
+                            1.348979E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 19,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            1.9993608E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -1.20621525E-1,
+                            1.348979E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            9.989842E0,
+                            3.3966432E0,
+                            6.5931997E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -1.3902502E-1,
+                            -1.2890156E-1,
+                            1.1313458E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 20,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            1.4868675E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.2890156E-1,
+                            1.1313458E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            7.831356E0,
+                            5.117269E0,
+                            2.714087E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            1.390244E-1,
+                            -1.1313462E-1,
+                            1.2890151E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 21,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            1.4868678E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -1.1313462E-1,
+                            1.2890151E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            7.8313518E0,
+                            2.7140903E0,
+                            5.1172614E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -1.277817E-1,
+                            -1.22544445E-1,
+                            1.0564719E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 22,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            1.1130905E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.22544445E-1,
+                            1.0564719E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            6.194549E0,
+                            4.0025086E0,
+                            2.1920407E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            1.2778169E-1,
+                            -1.0564719E-1,
+                            1.2254446E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 23,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            1.1130908E0,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -1.0564719E-1,
+                            1.2254446E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            6.19455E0,
+                            2.192041E0,
+                            4.002509E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -1.1627693E-1,
+                            -1.1582881E-1,
+                            9.826283E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 24,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            8.39262E-1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.1582881E-1,
+                            9.826283E-2
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            4.9523425E0,
+                            3.160802E0,
+                            1.7915407E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            1.1627653E-1,
+                            -9.8262876E-2,
+                            1.158288E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 25,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            8.3926255E-1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -9.8262876E-2,
+                            1.158288E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            4.952342E0,
+                            1.791543E0,
+                            3.1607993E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -1.0478433E-1,
+                            -1.08841784E-1,
+                            9.110641E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 26,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            6.378631E-1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.08841784E-1,
+                            9.110641E-2
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            4.0067344E0,
+                            2.524114E0,
+                            1.4826207E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            1.0478346E-1,
+                            -9.1106564E-2,
+                            1.0884178E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 27,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            6.378649E-1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -9.1106564E-2,
+                            1.0884178E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            4.0067396E0,
+                            1.4826269E0,
+                            2.5241125E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -9.360821E-2,
+                            -1.01727836E-1,
+                            8.4293194E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 28,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            4.8914158E-1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -1.01727836E-1,
+                            8.4293194E-2
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            3.2832289E0,
+                            2.0406446E0,
+                            1.2425841E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            9.360896E-2,
+                            -8.429314E-2,
+                            1.0172791E-1
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 29,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            4.891416E-1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -8.429314E-2,
+                            1.0172791E-1
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            3.2832317E0,
+                            1.2425821E0,
+                            2.0406497E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -8.303E-2,
+                            -9.46551E-2,
+                            7.790896E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 30,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            3.7880513E-1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.88E6,
+                            -9.46551E-2,
+                            7.790896E-2
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            2.725759E0,
+                            1.6713785E0,
+                            1.0543804E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            8.30288E-2,
+                            -7.790903E-2,
+                            9.465492E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 31,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            3.788044E-1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1E-5,
+                            -7.790903E-2,
+                            9.465492E-2
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            2.7257526E0,
+                            1.0543821E0,
+                            1.6713704E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -7.3257506E-2,
+                            -8.507238E-2,
+                            6.1084658E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "id": 32,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            2.4946792E-1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            4.5E5,
+                            -8.507238E-2,
+                            6.1084658E-2
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            2.2925298E0,
+                            1.2891026E0,
+                            1.0034274E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            7.32583E-2,
+                            -6.108467E-2,
+                            8.507262E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            1,
+                            0,
+                            0
+                        ],
+                        "id": 33,
+                        "left_children": [
+                            1,
+                            -1,
+                            -1
+                        ],
+                        "loss_changes": [
+                            2.4946928E-1,
+                            0E0,
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647,
+                            0,
+                            0
+                        ],
+                        "right_children": [
+                            2,
+                            -1,
+                            -1
+                        ],
+                        "split_conditions": [
+                            2.1E5,
+                            -6.108467E-2,
+                            8.507262E-2
+                        ],
+                        "split_indices": [
+                            5,
+                            0,
+                            0
+                        ],
+                        "split_type": [
+                            0,
+                            0,
+                            0
+                        ],
+                        "sum_hessian": [
+                            2.29254E0,
+                            1.0034297E0,
+                            1.2891103E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "3",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -6.5873034E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 34,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1.976191E-2
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            2.001579E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            6.587096E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 35,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.976129E-2
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            2.0015767E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -5.2992005E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 36,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1.5897602E-2
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9874549E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            5.299189E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 37,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.5897568E-2
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9874572E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -4.2571843E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 38,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1.2771553E-2
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9782494E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            4.2570744E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 39,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.2771224E-2
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9782381E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -3.4171004E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 40,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            -1.0251301E-2
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9722362E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            3.417264E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 41,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            1.0251792E-2
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9722425E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -2.7412545E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 42,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            -8.223764E-3
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9682959E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            2.741132E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 43,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            8.223396E-3
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9682915E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -2.1983333E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 44,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            -6.595E-3
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.965703E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            2.1982156E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 45,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            6.594647E-3
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9657112E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -1.7623538E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 46,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            -5.2870614E-3
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9640001E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            1.7624395E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 47,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            5.2873185E-3
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9640112E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -1.4125661E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 48,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            -4.2376984E-3
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.962871E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            1.4125729E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 49,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            4.237719E-3
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9628668E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            -1.1322647E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 50,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            -3.3967944E-3
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9621083E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    },
+                    {
+                        "base_weights": [
+                            1.1320966E-2
+                        ],
+                        "categories": [],
+                        "categories_nodes": [],
+                        "categories_segments": [],
+                        "categories_sizes": [],
+                        "default_left": [
+                            0
+                        ],
+                        "id": 51,
+                        "left_children": [
+                            -1
+                        ],
+                        "loss_changes": [
+                            0E0
+                        ],
+                        "parents": [
+                            2147483647
+                        ],
+                        "right_children": [
+                            -1
+                        ],
+                        "split_conditions": [
+                            3.3962901E-3
+                        ],
+                        "split_indices": [
+                            0
+                        ],
+                        "split_type": [
+                            0
+                        ],
+                        "sum_hessian": [
+                            1.9621047E0
+                        ],
+                        "tree_param": {
+                            "num_deleted": "0",
+                            "num_feature": "15",
+                            "num_nodes": "1",
+                            "size_leaf_vector": "1"
+                        }
+                    }
+                ]
+            },
+            "name": "gbtree"
+        },
+        "learner_model_param": {
+            "base_score": "5E-1",
+            "boost_from_average": "1",
+            "num_class": "2",
+            "num_feature": "15",
+            "num_target": "1"
+        },
+        "objective": {
+            "name": "multi:softmax",
+            "softmax_multiclass_param": {
+                "num_class": "2"
+            }
+        }
+    },
+    "version": [
+        3,
+        0,
+        0
+    ]
+}

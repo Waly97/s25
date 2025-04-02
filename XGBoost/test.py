@@ -1,42 +1,99 @@
-import xgboost as xgb
-import matplotlib.pyplot as plt
-from xgboost import plot_tree
-from sklearn.datasets import make_classification
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report
-import pandas as pd
 import sys
+import numpy as np
+import pandas as pd
+import xgboost as xgb
+from xgboost import XGBClassifier
+from sklearn.model_selection import train_test_split
+from tqdm import tqdm
+import logging
+logging.disable(sys.maxsize)
 
-### Lire les données depuis un fichier CSV
-csv_file = sys.argv[1]
-dataset = pd.read_csv(csv_file)  # Le dataset doit avoir un en-tête
+def leq(f1, f2):
+    return all(a <= b for a, b in zip(f1, f2))
 
-### Séparation des caractéristiques et de la cible
-feature_names = list(dataset.columns)
-nb_feature = len(feature_names)  # Nombre total de colonnes
-X = dataset.iloc[:, 0:(nb_feature - 1)]  # Toutes les colonnes sauf la dernière
-Y = dataset.iloc[:, (nb_feature - 1)]  # Dernière colonne = cible
+def f_min(m, instance):
+    return np.minimum(m, instance)
 
-# Diviser les données en ensemble d'entraînement (80%) et test (20%)
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=7)
+def f_max(m, instance):
+    return np.maximum(m, instance)
 
-# Créer et entraîner un modèle XGBoost
-model = xgb.XGBClassifier(n_estimators=10, max_depth=3, learning_rate=0.1, use_label_encoder=False, eval_metric="logloss")
-model.fit(X_train, y_train)
+def softmax(x):
+    e_x = np.exp(x - np.max(x))
+    return e_x / e_x.sum()
 
-# Faire des prédictions sur l'ensemble de test
-y_pred = model.predict(X_test)
+def classify_and_box(model_path, dataset_path, split=False, test_size=0.3):
+    print("📦 Chargement du modèle et des données...")
 
-# Évaluer le modèle
-accuracy = accuracy_score(y_test, y_pred)
-print(f"✅ Exactitude du modèle : {accuracy:.4f}")
-print("\n🔍 Rapport de classification :\n", classification_report(y_test, y_pred))
+    model = XGBClassifier()
+    model.load_model(model_path)
+    booster = model.get_booster()
 
-# Afficher tous les arbres de décision
-num_trees = model.get_booster().num_boosted_rounds()
+    df = pd.read_csv(dataset_path)
 
-for i in range(num_trees):
-    plt.figure(figsize=(12, 6))
-    plot_tree(model, num_trees=i)  # Afficher chaque arbre
-    plt.title(f"Arbre de décision {i+1}")
-    plt.show()
+    # Supprimer la colonne cible si elle existe
+    possible_targets = ["label", "target", "output", "class", "y"]
+    target_col = next((col for col in df.columns if col.lower() in possible_targets), None)
+
+    if target_col:
+        print(f"🧹 Colonne cible détectée : '{target_col}' → elle est ignorée.")
+        X = df.drop(columns=[target_col])
+    else:
+        X = df.copy()
+
+    X.columns = [f"f{i}" for i in range(X.shape[1])]
+
+    if split:
+        X_train, X_test = train_test_split(X, test_size=test_size, random_state=42)
+        print(f"✂️ Split activé : {len(X_train)} train / {len(X_test)} test")
+        X_to_predict = X_test
+    else:
+        X_to_predict = X
+
+    dtest = xgb.DMatrix(X_to_predict, feature_names=X.columns.tolist())
+
+    print("🔎 Prédiction des logits...")
+    logits = booster.predict(dtest, output_margin=True)
+
+    if logits.ndim == 1:
+        # Binaire
+        probs = 1 / (1 + np.exp(-logits))
+        pred_classes = (probs >= 0.5).astype(int)
+    else:
+        # Multi-classe
+        probs = np.apply_along_axis(softmax, 1, logits)
+        pred_classes = np.argmax(probs, axis=1)
+
+    boxes_by_class = {}
+
+    print("\n🚀 Classification et placement dans les boîtes :")
+    for i, instance in tqdm(enumerate(X_to_predict.values), total=len(X_to_predict), ncols=80):
+        cls = int(pred_classes[i])
+        logit = logits[i]
+        proba = probs[i] if probs.ndim > 1 else probs[i]
+
+        print(f"\n📌 Instance {i}")
+        print(f"  → Logits     : {logit}")
+        print(f"  → Probas     : {proba}")
+        print(f"  → Classe prédite : {cls}")
+
+        if cls not in boxes_by_class:
+            boxes_by_class[cls] = []
+
+        compatible_found = False
+        for box in boxes_by_class[cls]:
+            if all(leq(instance, f) or leq(f, instance) for f in box["instances"]):
+                box["instances"].append(instance)
+                box["f_min"] = f_min(box["f_min"], instance)
+                box["f_max"] = f_max(box["f_max"], instance)
+                compatible_found = True
+                # pas de break → multi-placement
+
+        if not compatible_found:
+            boxes_by_class[cls].append({
+                "instances": [instance],
+                "f_min": instance,
+                "f_max": instance
+            })
+
+    print("\n✅ Boîtes créées avec succès !")
+    return boxes_by_class

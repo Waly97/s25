@@ -59,6 +59,7 @@ def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, 
 
 
 def verify (instances,predictions) :
+    print (predictions[:100])
     nb_instances = len(instances)
     # sorted by classes
     index_class = {}
