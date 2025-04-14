@@ -1,3 +1,6 @@
+import pandas as pd
+
+
 class Boite:
     def __init__(self, bornes):
         """
@@ -6,21 +9,32 @@ class Boite:
         """
         self.bornes = {k: list(v) for k, v in bornes.items()}
 
+    @classmethod
+    def from_bounds(cls,fmin,fmax):
+        bornes = {f:(fmin[f],fmax[f]) for f in fmin}
+        return cls(bornes)
+
     def copy(self):
         return Boite({k: list(v) for k, v in self.bornes.items()})
 
     def split(self, feature, threshold):
+        feature = int(feature) 
         a, b = self.bornes[feature]
         threshold = float(threshold)
 
         # Cas spécial : l'intervalle est déjà figé à une seule valeur
         if a == b:
             if a < threshold:
-                left = self.copy()
+                left = self
                 return left, None
             elif a >= threshold:
-                right = self.copy()
+                right = self
                 return None, right
+        if b < threshold :
+            return self,None
+        if a >= threshold :
+            return None,self
+        
         if float(b) == threshold:
             left=self.copy()
             right=self.copy()
@@ -45,6 +59,7 @@ class Boite:
     def is_valid(self):
         """Autorise les boîtes plates (a == b)"""
         return all(a <= b for a, b in self.bornes.values())
+    
 
     def intersection(self, other):
         result = {}
@@ -58,19 +73,30 @@ class Boite:
         return Boite(result)
 
     def f_min(self):
-        return [interval[0] for interval in self.bornes.values()]
+        return  {f:a for f,(a,b) in self.bornes.items()}
 
     def f_max(self):
-        return [interval[1] for interval in self.bornes.values()]
+        return  {f: b for f,(a,b) in self.bornes.items()}
 
     def __repr__(self):
         return f"Boite({{ {', '.join(f'f{feat}: [{a}, {b}]' for feat, (a, b) in self.bornes.items())} }})"
+    
+
+    def to_interval_instance(self):
+        fmin= {f:a for f,(a,b) in self.bornes.items()}
+        fmax = {f: b for f,(a,b) in self.bornes.items()}
+        return {"fmin":fmin, "fmax":fmax}
+    
 
     @staticmethod
     def creer_boite_initiale_depuis_dataset(df):
+        df = pd.read_csv(df)
+        boxes = []
         if "label" in df.columns:
             df = df.drop(columns=["label"])
         if "output" in df.columns:
             df = df.drop(columns=["output"])
         bornes = {i: [df.iloc[:, i].min(), df.iloc[:, i].max()] for i in range(df.shape[1])}
-        return Boite(bornes)
+        boite = Boite(bornes)
+        # boxes.append(boite)
+        return boite

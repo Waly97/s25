@@ -2,27 +2,24 @@ from boite import Boite
 import numpy as np
 
 def propagate_boite_in_tree(tree, boite, node_id=0):
-    """
-    Propagation d'une boîte dans un arbre XGBoost (format indexé).
-    Retourne une liste de (boite_finale, logits) depuis un node donné.
-    """
+    # Cas où on atteint une feuille
     if tree["left_children"][node_id] == -1 and tree["right_children"][node_id] == -1:
         score = tree["base_weights"][node_id]
         return [(boite, score)]
 
     feature_index = tree["split_indices"][node_id]
     threshold = tree["split_conditions"][node_id]
-
+    
     left_boite, right_boite = boite.split(feature_index, threshold)
     results = []
 
-    if left_boite:
+    if left_boite is not None:
         left_id = tree["left_children"][node_id]
-        results.extend(propagate_boite_in_tree(tree, left_boite, left_id))
+        results+=(propagate_boite_in_tree(tree, left_boite, left_id))
 
-    if right_boite:
+    if right_boite is not None:
         right_id = tree["right_children"][node_id]
-        results.extend(propagate_boite_in_tree(tree, right_boite, right_id))
+        results+=(propagate_boite_in_tree(tree, right_boite, right_id))
 
     return results
 
