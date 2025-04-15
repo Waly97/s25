@@ -1,5 +1,5 @@
 from tqdm import tqdm
-from boite import Boite  # ton module contenant leq, f_min, f_max (si besoin)
+from boite import Boite 
 from multiprocessing import Pool , cpu_count
 from itertools import combinations
 from arbre import  propagate_boite_in_tree
