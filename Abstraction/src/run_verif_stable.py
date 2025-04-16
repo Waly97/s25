@@ -1,7 +1,7 @@
 from xgboost import XGBClassifier
 from boite import Boite
-from stable import StabilityChecker
 from build_boite import  BoitePropagator
+from stable import StabilityChecker
 import sys
 import xgboost as xgb
 import pandas as pd
@@ -17,7 +17,7 @@ python3 run_verif_stable.py model/car_evaluation.py datasets_encoded/car_evaluat
 """
 
 def main():
-    df = pd.read_csv(sys.argv[2])
+    df = sys.argv[2]
     model =sys.argv[1]
     bt = Boite.creer_boite_initiale_depuis_dataset(df)
     buil_prop = BoitePropagator(model,bt)
@@ -26,7 +26,7 @@ def main():
 
     final_boite = buil_prop.regrouper_boites_par_classe(result)
 
-
+    # tracer_toutes_zones_2D(final_boite)
     verif_stablity= StabilityChecker(final_boite,model)
 
     verif_stablity.verif_stable()

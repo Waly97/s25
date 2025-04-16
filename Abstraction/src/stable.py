@@ -69,20 +69,28 @@ class StabilityChecker:
         max_boxes =[b for b in boxes if self.is_maximal(Boite.f_max(b),fmaxs)]
         return min_boxes,max_boxes
     
-    def generate_inter_boxe_ameliorer(self,min_boxes,max_boxes):
-        inter_boxes= []
-        total = len(min_boxes) * len(max_boxes)
-        pbar = tqdm(total=total, desc="create Boxe inter",ncols=80)
-        nb_boxes =0
-        for bmin in min_boxes:
-            for bmax in max_boxes:
-                pbar.update(1)
-                i=Boite.from_bounds(Boite.f_min(bmin),Boite.f_max(bmax))
-                inter_boxes.append(i)
+    def generate_inter_boxe_ameliorer(self, min_boxes, max_boxes):
+        inter_boxes = []
+        pbar = tqdm(min_boxes, desc="🔄 Génération optimisée", ncols=80)
+        nb_boxes = 0
+
+        # Pré-calculer tous les fmax
+        precomputed_max = [(b, Boite.f_max(b)) for b in max_boxes]
+
+        for bmin in pbar:
+            fmin = Boite.f_min(bmin)
+
+            # ⚡ Ne garde que les max_boxes compatibles
+            candidates = [bmax for bmax, fmax in precomputed_max if self.leq(fmin, fmax)]
+
+            for bmax in candidates:
+                inter_box = Boite.from_bounds(fmin, Boite.f_max(bmax))
+                inter_boxes.append(inter_box)
                 nb_boxes += 1
-        print("nombre de boxes intermediare ", nb_boxes)        
-        pbar.close()
+
+        print(f"✅ Nombre de boîtes intermédiaires valides : {nb_boxes}")
         return inter_boxes
+
     
 
 
@@ -138,24 +146,13 @@ class StabilityChecker:
 
         pbar.close()
         return True
-
-    def is_stable_parallele(self):
-        class_labels = list(self.boxes_by_class.keys())
-        tasks =[]
-
-        for i in range(len(class_labels)):
-            for j in range(i+1,len(class_labels)):
-                tasks.append((self.boxes_by_class[class_labels[i]],self.boxes_by_class[class_labels[j]]))
-        num_workers = 3
-        with Pool(num_workers) as pool:
-            result = list(tqdm(pool.imap(self.check_pair_stability,tasks),total=len(tasks),desc="Checking stability",ncols=80))
-
-        return all(result)
     
 
     def verif_stable(self):
         # if self.is_stable_parallele():
         if self._verif_stable_intra_class():
                 print("The stability has been respected")
+                return True
         else:
             print("The model isn't stable")
+            return False

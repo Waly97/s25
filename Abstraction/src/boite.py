@@ -1,6 +1,7 @@
 import pandas as pd
 
 
+
 class Boite:
     def __init__(self, bornes):
         """
@@ -15,44 +16,57 @@ class Boite:
         return cls(bornes)
 
     def copy(self):
-        return Boite({k: list(v) for k, v in self.bornes.items()})
+        return Boite(self.bornes.copy())
 
     def split(self, feature, threshold):
-        feature = int(feature) 
+        feature = int(feature)
         a, b = self.bornes[feature]
         threshold = float(threshold)
 
-        # Cas spécial : l'intervalle est déjà figé à une seule valeur
+        # Cas spécial : borne fixe
         if a == b:
             if a < threshold:
-                left = self
-                return left, None
-            elif a >= threshold:
-                right = self
-                return None, right
-        if b < threshold :
-            return self,None
-        if a >= threshold :
-            return None,self
-        
-        if float(b) == threshold:
-            left=self.copy()
-            right=self.copy()
-            left.bornes[feature]= [a,(b-1)]
-            right.bornes[feature]=[b,b]
-            return left,right
+                return self, None
+            else:
+                return None, self
+
+        # Boîte totalement à gauche ou droite
+        if b < threshold:
+            return self, None
+        if a >= threshold:
+            return None, self
+
+        # Cas précis : b == threshold
+        if b == threshold:
+            # Créer deux copies légères de self.bornes
+            left_bornes = {k: list(v) for k, v in self.bornes.items()}
+            right_bornes = {k: list(v) for k, v in self.bornes.items()}
+
+            # Mettre à jour uniquement la feature coupée
+            left_bornes[feature] = [a, threshold - 1e-6]
+            right_bornes[feature] = [threshold, threshold]
+
+            left = Boite(left_bornes)
+            right = Boite(right_bornes)
+
+            return left, right
 
         # Cas général
         left_min, left_max = a, min(b, threshold)
         right_min, right_max = max(a, threshold), b
 
-        left = self.copy() if left_min < left_max else None
-        right = self.copy() if right_min < right_max else None
+        left = None
+        right = None
 
-        if left:
-            left.bornes[feature] = [left_min, left_max]
-        if right:
-            right.bornes[feature] = [right_min, right_max]
+        if left_min < left_max:
+            left_bornes = dict(self.bornes)  
+            left_bornes[feature] = [left_min, left_max]
+            left = Boite(left_bornes)
+
+        if right_min < right_max:
+            right_bornes = dict(self.bornes)
+            right_bornes[feature] = [right_min, right_max]
+            right = Boite(right_bornes)
 
         return left, right
 

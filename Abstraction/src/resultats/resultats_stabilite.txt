@@ -11,7 +11,7 @@ Modèle : Modèle petit - 56 arbres
  - Fichier        : Abstraction/src/model/placement.json
  - Nb arbres      : 52
  - Nb boîtes      : 3
- - Stable   : NON
+ - Stable   : OK
  - Durée (s)      : 0.03
 ----------------------------------------
 Modèle : Modèle moyen - 544 arbres

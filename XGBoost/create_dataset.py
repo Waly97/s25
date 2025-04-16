@@ -3,6 +3,12 @@ from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 import os
 import numpy as np
 
+import pandas as pd
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder
+import os
+import numpy as np
+import re
+
 def convert_and_encode(input_file, target_column, output_dir="encoded_data"):
     """
     Convertit un fichier .data ou .csv en un fichier CSV avec One-Hot Encoding 
@@ -18,7 +24,19 @@ def convert_and_encode(input_file, target_column, output_dir="encoded_data"):
 
     # Normaliser les noms de colonnes (supprimer les espaces, convertir en minuscules)
     df.columns = df.columns.str.strip()
-    
+
+    # 1.1 Traiter les colonnes mixtes "numérique + lettre"
+    for col in df.columns:
+        if df[col].astype(str).str.match(r"^\d+[A-Za-z]$").all():
+            print(f"🧪 Colonne '{col}' détectée comme mixte nombre + lettre.")
+            
+            # Séparer la partie numérique et la lettre dans deux nouvelles colonnes
+            df[col + "_num"] = df[col].astype(str).str.extract(r"^(\d+)[A-Za-z]$").astype(float)
+            df[col + "_flag"] = df[col].astype(str).str.extract(r"^\d+([A-Za-z])$")
+            
+            # Supprimer la colonne d'origine
+            df.drop(columns=[col], inplace=True)
+
     # Vérifier si la colonne cible existe
     if target_column not in df.columns:
         print(f"⚠️ La colonne cible '{target_column}' n'existe pas dans {input_file}.")
@@ -33,7 +51,7 @@ def convert_and_encode(input_file, target_column, output_dir="encoded_data"):
         return df[column].astype(str).str.contains(r'[a-zA-Z]', regex=True).any()
 
     categorical_features = [col for col in df.columns if col not in numeric_columns and is_categorical(col)]
-    
+
     # Enlever la colonne cible des colonnes à encoder
     if target_column in categorical_features:
         categorical_features.remove(target_column)
@@ -45,7 +63,7 @@ def convert_and_encode(input_file, target_column, output_dir="encoded_data"):
         df.to_csv(os.path.join(output_dir, output_filename), index=False)
         print(f"📁 Fichier enregistré sous : {output_filename}")
         return
-    
+
     print(f"🔍 Colonnes catégoriques détectées dans {input_file}: {categorical_features}")
 
     # 4. Appliquer One-Hot Encoding uniquement sur les colonnes catégoriques (sauf la cible)
@@ -77,6 +95,7 @@ def convert_and_encode(input_file, target_column, output_dir="encoded_data"):
 
     print(f"✅ Fichier encodé enregistré sous : {output_filename}")
 
+
 def process_data_folder(input_folder, target_column, output_folder="encoded_data"):
     """
     Parcourt un dossier et applique `convert_and_encode` à tous les fichiers `.data` ou `.csv`.
@@ -105,4 +124,4 @@ def process_data_folder(input_folder, target_column, output_folder="encoded_data
 
 # Exemple d'utilisation :
 # Assurez-vous de remplacer "output" par le vrai nom de la colonne cible
-process_data_folder("datasets_test", "output", "datasets_encoded")
+process_data_folder("datasets_train", "output", "datasets_train_encoded")
