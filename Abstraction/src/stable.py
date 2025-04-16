@@ -121,10 +121,6 @@ class StabilityChecker:
         pbar.close()
         return True
 
-    def check_pair_stability(self,args):
-        bxs1,bxs2 =args
-        return self.is_stable_list(bxs1,bxs2)
-
     def is_stable_boxes_by_class(self,boxes_by_class):
         keys = list(boxes_by_class.keys())  # pour garder l’ordre
         total = len(keys) * (len(keys) - 1) // 2
