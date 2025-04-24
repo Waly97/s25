@@ -1,0 +1,30 @@
+Résumé des vérifications de stabilité
+========================================
+Modèle : Modele complexe - 904 arbres
+ - Fichier        : Abstraction/src/model/car_evaluation.json
+ - Nb arbres      : 904
+ - Nb boîtes      : 32768
+ - Stable   : NON
+ - Durée (s)      : 1161.04
+----------------------------------------
+Modèle : Modèle petit - 56 arbres
+ - Fichier        : Abstraction/src/model/placement.json
+ - Nb arbres      : 52
+ - Nb boîtes      : 3
+ - Stable   : OK
+ - Durée (s)      : 0.03
+----------------------------------------
+Modèle : Modèle moyen - 544 arbres
+ - Fichier        : Abstraction/src/models_article/car_evaluation.json
+ - Nb arbres      : 544
+ - Nb boîtes      : 7688
+ - Stable   : NON
+ - Durée (s)      : 75.01
+----------------------------------------
+Modèle : Modèle petit - 20 arbres
+ - Fichier        : Abstraction/src/models_article/placement.json
+ - Nb arbres      : 20
+ - Nb boîtes      : 182053
+ - Stable   : NON
+ - Durée (s)      : 329.84
+----------------------------------------

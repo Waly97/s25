@@ -7,6 +7,7 @@ import xgboost as xgb
 import pandas as pd
 import build_boite as bb
 import json
+import multiprocessing as mp
 import cProfile
 import pstats 
 
@@ -24,15 +25,16 @@ def main():
 
     result = buil_prop.run()
 
-    final_boite = buil_prop.regrouper_boites_par_classe(result)
+    final_boites = buil_prop.regrouper_boites_par_classe(result)
 
     # tracer_toutes_zones_2D(final_boite)
-    verif_stablity= StabilityChecker(final_boite,model)
+    verif_stablity= StabilityChecker(final_boites,model)
 
     verif_stablity.verif_stable()
     
 
 if __name__ == "__main__":
+    mp.set_start_method("fork")  # 🔥 nécessaire pour bypass spawn
     """
     profiling pour observer les fonction qui prend plus de temps pour l'optimisation du code 
     """

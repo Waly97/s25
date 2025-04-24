@@ -1,6 +1,6 @@
 import pandas as pd
 
-
+import numpy as np
 
 class Boite:
     def __init__(self, bornes):
@@ -114,3 +114,6 @@ class Boite:
         boite = Boite(bornes)
         # boxes.append(boite)
         return boite
+    @staticmethod
+    def to_array(b, feature_order):
+        return np.array([b[f] for f in feature_order], dtype=np.float32)

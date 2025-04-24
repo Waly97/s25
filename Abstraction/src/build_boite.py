@@ -20,6 +20,7 @@ class BoitePropagator:
 
         self.model = self._load_model()
         self.arbres, self.num_classes = self._extract_trees()
+        self.nb_boite=0
 
     def _load_model(self):
         with open(self.model_json_path, "r") as f:
@@ -60,7 +61,7 @@ class BoitePropagator:
 
             if self.verbose:
                 tqdm.write(f"🔁 Étape {idx + 1}/{len(self.arbres)} — {len(boite_logit_pairs)} boîtes actives")
-
+        self.nb_boite = len(boite_logit_pairs)
         results = []
         for pair in boite_logit_pairs:
             logits = pair["logits"]

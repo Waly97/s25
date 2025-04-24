@@ -111,4 +111,4 @@ def process_data_folder(input_folder, target_column, output_folder="encoded_data
 
 # Exemple d'utilisation :
 # Assurez-vous de remplacer "output" par le vrai nom de la colonne cible
-process_data_folder("datasets_train", "output", "datasets_train_encoded")
+process_data_folder("Abstraction/datasets_train", "output", "Abstraction/datasets_train_encoded")

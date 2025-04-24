@@ -1,76 +1,115 @@
-import sys
-import matplotlib.pyplot as plt
+import pandas as pd
 import xgboost as xgb
-from xgboost import XGBClassifier
-from xgboost import plot_tree
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+import time
+import os
+import sys
+from sklearn.preprocessing import LabelEncoder
+import numpy as np
+import matplotlib.pyplot as plt
+import multiprocessing as mp   
+
+from build_boite import BoitePropagator
 from stable import StabilityChecker
 from boite import Boite
 
 
+def experimenter_max_leaves(csv_path, target_col, output_dir="models_experiments_leaves", max_leaves_list=[2,4, 8, 16, 32, 64]):
+    df = pd.read_csv(csv_path)
+    X = df.drop(columns=[target_col])
+    y = df[target_col]
 
-# model_path = sys.argv[1]
-# model = XGBClassifier()
-# model.load_model(model_path)
-# xgb.plot_tree(model, tree_idx=2)
-# plt.show()
+    unique_y = np.sort(y.unique())
+    expected = np.arange(len(unique_y))
 
-def leq(i1,i2):
-    return all(i1[f]<=i2[f] for f in i1)
+    if not np.array_equal(unique_y, expected):
+        print(f"⚠️ Labels non consécutifs détectés : {unique_y}, correction automatique...")
+        le = LabelEncoder()
+        y = le.fit_transform(y)
+        unique_y = np.sort(np.unique(y))
 
-def is_minimal(instance,boxe):
-    return not any(leq(other,instance) and other != instance for other in boxe)
-    
-def is_maximal(instance,boxe):
-    return not any(leq(instance,other) and other != instance for other in boxe)
-    
-def extract_minmax_boxes(boxes):
-    fmins = [Boite.f_min(b) for b in boxes]
-    fmaxs =[Boite.f_max(b) for b in boxes]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-    min_boxes = [b for b in boxes if is_minimal(Boite.f_min(b),fmins)]
-    max_boxes =[b for b in boxes if is_maximal(Boite.f_max(b),fmaxs)]
-    return min_boxes,max_boxes
+    os.makedirs(output_dir, exist_ok=True)
+    results = []
 
-def tracer_toutes_zones_2D(boites_par_classe, features=(0, 1)):
-    couleurs = ['blue', 'green', 'red', 'purple', 'orange', 'cyan', 'brown']
+    for leaves in max_leaves_list:
+        print(f"\n--- Entraînement avec max_leaves = {leaves} ---")
+        dtrain = xgb.DMatrix(X_train, label=y_train)
+        dtest = xgb.DMatrix(X_test, label=y_test)
 
-    plt.figure(figsize=(8, 6))
+        params = {
+            'objective': 'multi:softmax',
+            'num_class': len(set(y)),
+            'max_depth': 0,
+            'max_leaves': leaves,
+            'verbosity': 0,
+            'grow_policy': 'lossguide',
+            'eval_metric': 'merror'
+        }
 
-    for classe, boites in boites_par_classe.items():
-        # Extraire uniquement les boîtes maximales
-        _, max_boxes =extract_minmax_boxes(boites)
+        evals = [(dtrain, 'train'), (dtest, 'test')]
+        evals_result = {}
 
-        fmins_0 = []
-        fmaxs_0 = []
-        fmins_1 = []
-        fmaxs_1 = []
+        start = time.time()
+        model = xgb.train(params, dtrain, num_boost_round=10, evals=evals, evals_result=evals_result, verbose_eval=False)
+        duration = time.time() - start
 
-        for b in max_boxes:
-            bornes = b.bornes
-            if features[0] in bornes and features[1] in bornes:
-                fmins_0.append(bornes[features[0]][0])
-                fmaxs_0.append(bornes[features[0]][1])
-                fmins_1.append(bornes[features[1]][0])
-                fmaxs_1.append(bornes[features[1]][1])
+        preds = model.predict(dtest)
+        acc = accuracy_score(y_test, preds)
 
-        if fmins_0 and fmins_1:
-            x_min = min(fmins_0)
-            x_max = max(fmaxs_0)
-            y_min = min(fmins_1)
-            y_max = max(fmaxs_1)
+        model_name = f"{os.path.splitext(os.path.basename(csv_path))[0]}_leaves{leaves}.json"
+        model_path = os.path.join(output_dir, model_name)
+        model.save_model(model_path)
 
-            couleur = couleurs[classe % len(couleurs)]
-            plt.gca().add_patch(
-                plt.Rectangle((x_min, y_min), x_max - x_min, y_max - y_min,
-                              fill=True, alpha=0.3, edgecolor=couleur, facecolor=couleur,
-                              label=f"Classe {classe}")
-            )
+        # Courbe d’apprentissage
+        train_error = evals_result['train']['merror']
+        test_error = evals_result['test']['merror']
+        plt.figure()
+        plt.plot(train_error, label='Train error')
+        plt.plot(test_error, label='Test error')
+        plt.title(f"Courbe d'apprentissage (max_leaves = {leaves})")
+        plt.xlabel("Boosting round")
+        plt.ylabel("Erreur de classification")
+        plt.legend()
+        plt.grid(True)
+        plt.tight_layout()
 
-    plt.xlabel(f"Feature {features[0]}")
-    plt.ylabel(f"Feature {features[1]}")
-    plt.title("Zone englobante des boîtes maximales par classe")
-    plt.legend()
-    plt.grid(True)
-    plt.show()
+        plot_path = os.path.join(output_dir, f"learning_curve_leaves{leaves}.png")
+        plt.savefig(plot_path)
+        plt.close()
+
+        # Vérification de la stabilité avec BoitePropagator et StabilityChecker
+        try:
+            b_init = Boite.creer_boite_initiale_depuis_dataset(csv_path)
+            bp = BoitePropagator(model_path, b_init)
+            final_boite = bp.run()
+            fusion_boxes = bp.regrouper_boites_par_classe(final_boite)
+            sbt = StabilityChecker(fusion_boxes,model_path)
+            is_stable = sbt.verif_stable()
+            stability = "Stable ✅" if is_stable else "Non stable ❌"
+        except Exception as e:
+            print(f"Erreur lors de la vérification de stabilité : {e}")
+            stability = "Erreur ⚠️"
+
+        results.append({
+            "max_leaves": leaves,
+            "accuracy": round(acc * 100, 2),
+            "duration_sec": round(duration, 2),
+            "model_path": model_path,
+            "learning_curve": plot_path,
+            "stability": stability
+        })
+
+    print("\n=== Résumé des expériences ===")
+    for r in results:
+        print(f"max_leaves = {r['max_leaves']} | Acc: {r['accuracy']}% | Durée: {r['duration_sec']}s | Stabilité: {r['stability']} | Modèle: {r['model_path']} | Courbe: {r['learning_curve']}")
+
+    return results
 
 
+if __name__ == "__main__":
+    mp.set_start_method("fork")  # 🔥 nécessaire pour bypass spawn
+    if len(sys.argv) > 1:
+        experimenter_max_leaves(sys.argv[1], "output")
