@@ -34,7 +34,6 @@ def main():
     
 
 if __name__ == "__main__":
-    mp.set_start_method("fork")  # 🔥 nécessaire pour bypass spawn
     """
     profiling pour observer les fonction qui prend plus de temps pour l'optimisation du code 
     """

@@ -15,7 +15,7 @@ from stable import StabilityChecker
 from boite import Boite
 
 
-def experimenter_max_leaves(csv_path, target_col, output_dir="models_experiments_leaves", max_leaves_list=[2,4, 8, 16, 32, 64]):
+def experimenter_max_leaves(csv_path, target_col, output_dir="models_experiments_leaves", max_leaves_list=[2,4]):
     df = pd.read_csv(csv_path)
     X = df.drop(columns=[target_col])
     y = df[target_col]
@@ -53,7 +53,7 @@ def experimenter_max_leaves(csv_path, target_col, output_dir="models_experiments
         evals_result = {}
 
         start = time.time()
-        model = xgb.train(params, dtrain, num_boost_round=10, evals=evals, evals_result=evals_result, verbose_eval=False)
+        model = xgb.train(params, dtrain, num_boost_round=100, evals=evals, evals_result=evals_result, verbose_eval=False)
         duration = time.time() - start
 
         preds = model.predict(dtest)
@@ -76,7 +76,7 @@ def experimenter_max_leaves(csv_path, target_col, output_dir="models_experiments
         plt.grid(True)
         plt.tight_layout()
 
-        plot_path = os.path.join(output_dir, f"learning_curve_leaves{leaves}.png")
+        plot_path = os.path.join(output_dir, f"{os.path.basename(csv_path)}leaves{leaves}.png")
         plt.savefig(plot_path)
         plt.close()
 
@@ -110,6 +110,5 @@ def experimenter_max_leaves(csv_path, target_col, output_dir="models_experiments
 
 
 if __name__ == "__main__":
-    mp.set_start_method("fork")  # 🔥 nécessaire pour bypass spawn
     if len(sys.argv) > 1:
         experimenter_max_leaves(sys.argv[1], "output")

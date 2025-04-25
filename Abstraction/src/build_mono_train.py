@@ -13,14 +13,14 @@ def tune_xgb(X, y, name="dataset"):
     param_grid = {
         'max_depth': [2,3, 4],
         'learning_rate': [0.01, 0.05, 0.1],
-        'n_estimators': [10,25],
+        'n_estimators': [100,200],
         'min_child_weight': [1, 2],
         'subsample': [0.7, 0.8, 1.0],
         'colsample_bytree': [0.5, 0.7, 0.9],
         'gamma': [0, 0.1, 0.2],
     }
 
-    model = XGBClassifier(use_label_encoder=False, eval_metric='mlogloss', random_state=0)
+    model = XGBClassifier(use_label_encoder=False, eval_metric='merror', random_state=0)
     cv = StratifiedKFold(n_splits=3, shuffle=True, random_state=0)
 
     grid = RandomizedSearchCV(
@@ -81,7 +81,7 @@ def train_and_save_model(csv_path, model_dir="models/", target_column="output"):
     dtrain = xgb.DMatrix(X_train, label=y_train)
     dval = xgb.DMatrix(X_val, label=y_val)
     dtest = xgb.DMatrix(X_test, label=y_test)
-    evals = [(dtrain, 'train'), (dval, 'eval')]
+    evals = [(dtrain, 'train'), (dtest, 'test')]
     eval_result = {}
 
     # xgb.train n'utilise pas tous les paramètres, on filtre
@@ -92,7 +92,7 @@ def train_and_save_model(csv_path, model_dir="models/", target_column="output"):
     train_params.update({
         'objective': 'multi:softmax',
         'num_class': len(np.unique(y)),
-        'eval_metric': 'mlogloss',
+        'eval_metric': 'merror',
         'verbosity': 0
     })
 
@@ -100,23 +100,25 @@ def train_and_save_model(csv_path, model_dir="models/", target_column="output"):
         params=train_params,
         dtrain=dtrain,
         evals=evals,
-        num_boost_round=best_params.get('n_estimators', 100),
+        num_boost_round=best_params.get('n_estimators',500),
         evals_result=eval_result,
         verbose_eval=False
     )
 
     # Courbe d'apprentissage
-    eval_df = pd.DataFrame(eval_result['eval'])
-    plt.figure(figsize=(8, 5))
-    for metric in eval_df.columns:
-        plt.plot(eval_df[metric], label=metric)
-    plt.xlabel("Boosting Round")
-    plt.ylabel("Metric")
-    plt.title(f"📈 Courbe d'apprentissage - {name}")
+    train_error = eval_result['train']['merror']
+    test_error = eval_result['test']['merror']
+    plt.figure()
+    plt.plot(train_error, label='Train error')
+    plt.plot(test_error, label='Test error')
+    plt.xlabel("Boosting round")
+    plt.ylabel("Erreur de classification")
     plt.legend()
+    plt.grid(True)
     plt.tight_layout()
     plt.savefig(f"learning_curve_{name}.png")
     print(f"📊 Courbe d'apprentissage sauvegardée : learning_curve_{name}.png")
+
 
     # Évaluation
     val_acc = accuracy_score(y_val, final_model.predict(dval))
