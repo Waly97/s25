@@ -31,7 +31,7 @@ def tune_xgb(X, y, name="dataset"):
         cv=cv,
         n_jobs=-1,
         verbose=1,
-        random_state=42
+        random_state=42,
     )
 
     grid.fit(X, y)

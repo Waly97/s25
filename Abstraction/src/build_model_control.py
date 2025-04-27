@@ -2,6 +2,7 @@ import pandas as pd
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
 import sys
 import os
 import numpy as np
@@ -42,17 +43,21 @@ params = {
     'objective': 'multi:softmax',
     'num_class': nb_classes,
     'max_depth': 4,             # Limite la profondeur de chaque arbre
-    'eta': 0.3,                 # Taux d’apprentissage
+    'eta': 0.1,                 # Taux d’apprentissage
     'verbosity': 1,
     'grow_policy': 'lossguide',
-    'booster': 'gbtree'
+    'booster': 'gbtree',
+    'eval_metric': 'merror'
 }
 
 # Définir le nombre d'arbres (boost rounds)
 num_boost_round = 300
 
+
+evals_result = {}
+eval = [(dtrain,'train'),(dtest,'eval')]
 # Entraînement
-model = xgb.train(params, dtrain, num_boost_round=num_boost_round)
+model = xgb.train(params, dtrain, num_boost_round=num_boost_round,evals=eval,evals_result=evals_result,verbose_eval=False)
 
 # Prédictions
 y_pred = model.predict(dtest)
@@ -64,3 +69,17 @@ model_name = os.path.splitext(os.path.basename(dataset_path))[0]
 model.save_model(f"models/{model_name}.json")
 print(f"Modèle sauvegardé sous models/{model_name}.json")
 
+# Courbe d'apprentissage 
+plt.figure(figsize=(10,6))
+epochs = range(len(evals_result['train']['merror']))
+plt.plot(epochs,evals_result['train']['merror'], label = 'Train Error')
+plt.plot(epochs,evals_result['eval']['merror'], label = 'Test Error')
+plt.xlabel("Boosting Rounds")
+plt.ylabel("Classification Error")
+plt.title("Courbe d apprentissage XGBOOST")
+plt.legend()
+plt.grid(True)
+os.makedirs("Courbe_App",exist_ok=True)
+plot_path = f"Courbe_App/{os.path.basename(dataset_path)}.png"
+plt.savefig(plot_path)
+print(f"Courbe d'apprentissage sauvegarder sous {plot_path}")

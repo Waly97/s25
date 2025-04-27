@@ -43,13 +43,20 @@ class Boite:
             right_bornes = {k: list(v) for k, v in self.bornes.items()}
 
             # Mettre à jour uniquement la feature coupée
-            left_bornes[feature] = [a, threshold - 1e-6]
-            right_bornes[feature] = [threshold, threshold]
+            if b== int(b):
+                left_bornes[feature] = [a, threshold - 1]
+                right_bornes[feature] = [threshold, threshold]
 
-            left = Boite(left_bornes)
-            right = Boite(right_bornes)
+                left = Boite(left_bornes)
+                right = Boite(right_bornes)
+                return left, right
+            else :
+                left_bornes[feature] = [a, threshold - 0.5]
+                right_bornes[feature] = [threshold, threshold]
 
-            return left, right
+                left = Boite(left_bornes)
+                right = Boite(right_bornes)
+                return left, right 
 
         # Cas général
         left_min, left_max = a, min(b, threshold)
