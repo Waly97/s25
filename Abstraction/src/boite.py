@@ -50,8 +50,9 @@ class Boite:
                 left = Boite(left_bornes)
                 right = Boite(right_bornes)
                 return left, right
-            else :
-                left_bornes[feature] = [a, threshold - 0.5]
+            else:
+                # b est un float : exclure strictement threshold de l'intervalle gauche
+                left_bornes[feature] = [a, np.nextafter(threshold, -np.inf)]  # plus grand float < threshold
                 right_bornes[feature] = [threshold, threshold]
 
                 left = Boite(left_bornes)
@@ -117,6 +118,8 @@ class Boite:
             df = df.drop(columns=["label"])
         if "output" in df.columns:
             df = df.drop(columns=["output"])
+        if "target" in df.columns:
+             df = df.drop(columns=["target"])
         bornes = {i: [df.iloc[:, i].min(), df.iloc[:, i].max()] for i in range(df.shape[1])}
         boite = Boite(bornes)
         # boxes.append(boite)

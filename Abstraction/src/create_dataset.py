@@ -1,114 +1,104 @@
 import pandas as pd
-from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 import os
-import numpy as np
-import re
+import xgboost as xgb
+from sklearn.datasets import load_iris, load_wine, load_digits
+from sklearn.model_selection import train_test_split
+import urllib.request
 
-def convert_and_encode(input_file, target_column, output_dir="encoded_data"):
-    """
-    Convertit un fichier .data ou .csv en un fichier CSV avec One-Hot Encoding 
-    pour les variables catégoriques (sauf la colonne cible qui est classée de 0 à n).
-    
-    :param input_file: Chemin du fichier .data ou .csv d'entrée
-    :param target_column: Nom de la colonne cible
-    :param output_dir: Répertoire où sauvegarder le fichier CSV encodé
-    """
+DATASETS_INFO = {
+    "iris": {
+        "loader": load_iris,
+        "target_col": "target",
+    },
+    "wine": {
+        "loader": load_wine,
+        "target_col": "target",
+    },
+    "glass": {
+        "url": "https://archive.ics.uci.edu/ml/machine-learning-databases/glass/glass.data",
+        "columns": [
+            "Id", "RI", "Na", "Mg", "Al", "Si", "K", "Ca", "Ba", "Fe", "Type"
+        ],
+        "target_col": "Type",
+    },
+    # D'autres datasets peuvent être ajoutés ici
+}
 
-    # 1. Charger le fichier
-    df = pd.read_csv(input_file)
-    df.columns = df.columns.str.strip()
+def download_glass():
+    """Télécharge le dataset glass"""
+    path = "datasets/glass.csv"
+    if not os.path.exists("datasets"):
+        os.makedirs("datasets")
+    urllib.request.urlretrieve(
+        DATASETS_INFO["glass"]["url"], path
+    )
+    print(f"✅ glass téléchargé dans {path}")
+    return path
 
-    # 2. Gérer les colonnes mixtes type "172N"
-    for col in df.columns:
-        if df[col].astype(str).str.match(r"^\d+[A-Za-z]$").all():
-            print(f"🧪 Colonne '{col}' détectée comme mixte nombre + lettre.")
-            df[col + "_num"] = df[col].astype(str).str.extract(r"^(\d+)[A-Za-z]$").astype(float)
-            df[col + "_flag"] = df[col].astype(str).str.extract(r"^\d+([A-Za-z])$")
-            df.drop(columns=[col], inplace=True)
-
-    has_target = target_column in df.columns
-
-    # 3. Identifier les colonnes numériques
-    numeric_columns = df.select_dtypes(include=["float64", "int64"]).columns.tolist()
-
-    # 4. Identifier les colonnes catégoriques
-    def is_categorical(column):
-        return df[column].astype(str).str.contains(r"[a-zA-Z]", regex=True).any()
-
-    categorical_features = [col for col in df.columns if col not in numeric_columns and is_categorical(col)]
-
-    # 5. Retirer la colonne cible des features à encoder (si elle existe)
-    if has_target and target_column in categorical_features:
-        categorical_features.remove(target_column)
-
-    if not categorical_features:
-        print(f"⚠️ Aucune colonne catégorique détectée à encoder dans {input_file}.")
-        categorical_encoded = pd.DataFrame()
+def prepare_dataset(name):
+    if name == "glass":
+        path = download_glass()
+        df = pd.read_csv(path, names=DATASETS_INFO[name]["columns"])
     else:
-        print(f"🔍 Colonnes catégoriques détectées : {categorical_features}")
-        encoder = OneHotEncoder(sparse_output=False, drop="first")
-        encoded_data = encoder.fit_transform(df[categorical_features])
-        column_names = encoder.get_feature_names_out(categorical_features)
-        categorical_encoded = pd.DataFrame(encoded_data.astype(int), columns=column_names)
+        loader = DATASETS_INFO[name]["loader"]
+        data = loader()
+        df = pd.DataFrame(data.data, columns=data.feature_names)
+        df["target"] = data.target
 
-    # 6. Encodage de la cible (si elle est présente)
-    if has_target:
-        if is_categorical(target_column):
-            label_encoder = LabelEncoder()
-            df[target_column] = label_encoder.fit_transform(df[target_column])
-            print(f"🎯 Cible '{target_column}' encodée : {list(label_encoder.classes_)}")
+    # Vérification cible
+    target_col = DATASETS_INFO[name]["target_col"]
+    if target_col not in df.columns:
+        raise ValueError(f"Colonne cible {target_col} introuvable dans {name}")
 
-        # Vérification que les labels sont corrects
-        unique_labels = df[target_column].unique()
-        if not np.array_equal(np.sort(unique_labels), np.arange(len(unique_labels))):
-            print(f"🚨 Problème : les labels doivent être dans [0, num_class - 1].")
-            print(f"🔢 Labels trouvés : {unique_labels}")
-            return
+    X = df.drop(columns=[target_col])
+    y = df[target_col]
 
-    # 7. Concaténation finale
-    df_numeric = df[numeric_columns]
-    df_final = pd.concat([df_numeric, categorical_encoded], axis=1)
+    # Corrige les labels pour être 0, ..., num_classes - 1
+    y = pd.Series(pd.Categorical(y).codes)
 
-    # Ajouter la colonne cible à la fin si elle existe
-    if has_target:
-        df_final[target_column] = df[target_column]
+    # Encodage one-hot pour X
+    X_encoded = pd.get_dummies(X)
 
-    # 8. Sauvegarde
-    os.makedirs(output_dir, exist_ok=True)
-    output_filename = os.path.basename(input_file).replace(".data", ".csv")
-    output_path = os.path.join(output_dir, output_filename)
-    df_final.to_csv(output_path, index=False)
+    final_df = pd.concat([X_encoded, y.rename("target")], axis=1)
 
-    if has_target:
-        print(f"✅ Fichier encodé avec cible sauvegardé : {output_filename}")
-    else:
-        print(f"✅ Fichier encodé (sans cible) sauvegardé : {output_filename}")
-def process_data_folder(input_folder, target_column, output_folder="encoded_data"):
-    """
-    Parcourt un dossier et applique `convert_and_encode` à tous les fichiers `.data` ou `.csv`.
+    output_csv = f"datasets/encoded/{name}_encoded.csv"
+    if not os.path.exists("datasets/encoded"):
+        os.makedirs("datasets/encoded")
+    final_df.to_csv(output_csv, index=False)
+    print(f"✅ Encodé et enregistré dans {output_csv}")
 
-    :param input_folder: Chemin du dossier contenant les fichiers .data
-    :param target_column: Nom de la colonne cible
-    :param output_folder: Dossier où sauvegarder les fichiers encodés
-    """
-    if not os.path.exists(input_folder):
-        print("❌ Le dossier spécifié n'existe pas.")
-        return
+    return final_df
 
-    #  Récupérer tous les fichiers .data ou .csv du dossier
-    data_files = [f for f in os.listdir(input_folder) if f.endswith(".data") or f.endswith(".csv")]
+def train_xgboost(df, name):
+    X = df.drop(columns=["target"])
+    y = df["target"]
 
-    if not data_files:
-        print("⚠️ Aucun fichier .data ou .csv trouvé dans le dossier.")
-        return
+    dtrain = xgb.DMatrix(data=X.values, label=y.values)
 
-    print(f"📂 {len(data_files)} fichiers trouvés : {data_files}")
+    params = {
+        "objective": "multi:softmax",
+        "num_class": len(set(y)),
+        "verbosity": 0,
+        "monotone_constraints": "(" + ",".join(["1"] * X.shape[1]) + ")",
+    }
 
-    # Appliquer la conversion à chaque fichier
-    for file in data_files:
-        file_path = os.path.join(input_folder, file)
-        convert_and_encode(file_path, target_column, output_folder)
+    model = xgb.train(params, dtrain, num_boost_round=50)
 
-# Exemple d'utilisation :
-# Assurez-vous de remplacer "output" par le vrai nom de la colonne cible
-process_data_folder("Abstraction/datasets_train", "output", "Abstraction/datasets_train_encoded")
+    if not os.path.exists("models"):
+        os.makedirs("models")
+
+    model.save_model(f"models/{name}.json")
+    print(f"✅ Modèle XGBoost sauvegardé dans models/{name}.json")
+
+def main():
+    datasets = ["iris", "wine", "glass"]  # tu peux ajouter ici d'autres noms
+    for name in datasets:
+        try:
+            print(f"\n⬇️ Traitement de {name}...")
+            df = prepare_dataset(name)
+            train_xgboost(df, name)
+        except Exception as e:
+            print(f"❌ Erreur pour {name}: {e}")
+
+if __name__ == "__main__":
+    main()

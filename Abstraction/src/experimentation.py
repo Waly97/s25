@@ -1,78 +1,81 @@
+import os
+import json
+import pandas as pd
 import time
 from boite import Boite
 from build_boite import BoitePropagator
 from stable import StabilityChecker
-import os
+from monotonicity_checker import MonotonicityChecker
 
-def tester_stabilite(model_path, boite_init, description):
-    print(f"\n--- Test du modèle : {description} ---")
-    start = time.time()
+def tester_un_modele(dataset_path, model_path, order_classes):
+    """
+    Teste stabilité + monotonie pour un modèle et retourne les résultats.
+    """
+    print(f"--- Test sur modèle {os.path.basename(model_path)} ---")
 
+    # Charger dataset et modèle
+    boite_init = Boite.creer_boite_initiale_depuis_dataset(dataset_path)
     propagateur = BoitePropagator(model_path, boite_init)
     resultats = propagateur.run()
-    boxes_by_class = BoitePropagator.regrouper_boites_par_classe(resultats)
 
-    stable = StabilityChecker(boxes_by_class, model_path)
-    stable_intra = stable.verif_stable()
+    # Nombre de features
+    df = pd.read_csv(dataset_path)
+    nb_features = df.shape[1] - 1  # dernière colonne = label
 
-    duree = time.time() - start
-    nb_arbres = len(propagateur.arbres)
-    nb_boites = sum(len(bx) for bx in boxes_by_class.values())
+    # Nombre de boîtes finales
+    final_boites = BoitePropagator.regrouper_boites_par_classe(resultats)
+    nb_boites = sum(len(lst) for lst in final_boites.values())
 
-    print(f"Stabilité intra-classe   : {'OK' if stable_intra else 'NON'}")
-    print(f"Nombre d'arbres          : {nb_arbres}")
-    print(f"Nombre total de boîtes   : {nb_boites}")
-    print(f"Durée totale             : {duree:.2f} sec")
+    # Taille du fichier modèle
+    model_size = os.path.getsize(model_path) / 1024  # en Ko
+
+    # Vérification stabilité
+    stable_checker = StabilityChecker(final_boites, model_path)
+    stable, _ = stable_checker.verif_stable()
+
+    # Vérification monotonie
+    monotone_checker = MonotonicityChecker(final_boites, model_path, order_classes)
+    monotone = monotone_checker.verif_monotone()
 
     return {
-        "description": description,
-        "fichier": os.path.basename(model_path),
-        "nb_arbres": nb_arbres,
-        "nb_boites": nb_boites,
-        "intra_classe": stable_intra,
-        "duree_sec": round(duree, 2)
+        "dataset": os.path.basename(dataset_path),
+        "model": os.path.basename(model_path),
+        "stable": stable,
+        "monotone": monotone,
+        "features": nb_features,
+        "boites": nb_boites,
+        "model_size_kb": round(model_size, 2)
     }
 
-def test_models_batch(modeles, boites_inits):
-    resume = []
-    for i, (path, description) in enumerate(modeles):
-        boite_init = Boite.creer_boite_initiale_depuis_dataset(boites_inits[i])
-        resultat = tester_stabilite(path, boite_init, description)
-        resume.append(resultat)
-    return resume
 
-def enregistrer_resultats(resultats, chemin_fichier="Abstraction/src/resultats/resultats_stabilite.txt"):
-    with open(chemin_fichier, "w") as f:
-        f.write("Résumé des vérifications de stabilité\n")
-        f.write("="*40 + "\n")
-        for res in resultats:
-            f.write(f"Modèle : {res['description']}\n")
-            f.write(f" - Fichier        : {res['fichier']}\n")
-            f.write(f" - Nb arbres      : {res['nb_arbres']}\n")
-            f.write(f" - Nb boîtes      : {res['nb_boites']}\n")
-            f.write(f" - Stable         : {'OUI' if res['intra_classe'] else 'NON'}\n")
-            f.write(f" - Durée (s)      : {res['duree_sec']}\n")
-            f.write("-"*40 + "\n")
+def experimentation_batch(dossier_datasets, dossier_models, ordre_classes, chemin_resultat="resultats_experimentation.txt"):
+    """
+    Lance l'expérimentation sur tous les datasets et modèles correspondants.
+    """
+    fichiers_datasets = sorted([f for f in os.listdir(dossier_datasets) if f.endswith('.csv')])
+    fichiers_models = sorted([f for f in os.listdir(dossier_models) if f.endswith('.json')])
 
-if __name__ == "__main__":
-    modeles = [
-        ("Abstraction/src/models/car_evaluation.json", "Modèle car_evaluation (encodé)"),
-        ("Abstraction/src/models/placement.json", "Modèle placement (encodé)"),
-        ("Abstraction/src/models/titanic_train.json", "Modèle titanic"),
-    ]
+    resultats = []
 
-    boites_inits = [
-        "Abstraction/src/datasets_train_encoded/car_evaluation.csv",
-        "Abstraction/src/datasets_train_encoded/placement.csv",
-        "Abstraction/src/datasets_train_encoded/titanic_train.csv",
-    ]
+    for dataset_file, model_file in zip(fichiers_datasets, fichiers_models):
+        dataset_path = os.path.join(dossier_datasets, dataset_file)
+        model_path = os.path.join(dossier_models, model_file)
 
-    res = test_models_batch(modeles, boites_inits)
+        resultat = tester_un_modele(dataset_path, model_path, ordre_classes)
+        resultats.append(resultat)
 
-    print("\n====== Récapitulatif ======")
-    for r in res:
-        print(r)
+    # Enregistrement dans un fichier
+    with open(chemin_resultat, "w") as f:
+        f.write("==== Résultats de l'expérimentation ====\n\n")
+        for r in resultats:
+            f.write(f"Dataset : {r['dataset']}\n")
+            f.write(f"Modèle  : {r['model']}\n")
+            f.write(f"- Stabilité : {'OUI' if r['stable'] else 'NON'}\n")
+            f.write(f"- Monotonie : {'OUI' if r['monotone'] else 'NON'}\n")
+            f.write(f"- Nombre de features : {r['features']}\n")
+            f.write(f"- Nombre de boîtes : {r['boites']}\n")
+            f.write(f"- Taille du modèle : {r['model_size_kb']} Ko\n")
+            f.write("-" * 40 + "\n")
 
-    enregistrer_resultats(res)
-    print("\nRésultats enregistrés dans 'resultats_stabilite.txt'")
+    print(f"\n✅ Résultats sauvegardés dans {chemin_resultat}")
 

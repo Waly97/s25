@@ -77,9 +77,9 @@ def filter_dominated(instances):
 
 class StabilityChecker:
 
-    def __init__(self,boxes_by_class,model):
+    def __init__(self,boxes_by_class, propagate : BoitePropagator):
         self.boxes_by_class = boxes_by_class
-        self.model=model
+        self.propagate=propagate
 
     def leq(self,i1,i2):
         return all(i1[f]<=i2[f] for f in i1)
@@ -139,8 +139,10 @@ class StabilityChecker:
             return False
         
         all_results = []
+        i=1
         for b in inter_boxes:
-            result = BoitePropagator(model_json_path=self.model, boite_init=b).run()
+            tqdm.write(f"🔁 Classe {class_id} — boite {1/len(inter_boxes)}")
+            result = self.propagate.propagate_boite(b)
             all_results.extend(result)
 
         # Regroupe les boîtes par classe prédite
