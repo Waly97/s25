@@ -7,6 +7,7 @@ from math import ceil
 from collections import defaultdict 
 from numba import njit,types
 import numpy as np
+from check_cexemple import extract_instance_from_boite,predict_from_boites
 
 def leq_reverse(a, b, leq_fn):
     return leq_fn(b, a)
@@ -77,9 +78,10 @@ def filter_dominated(instances):
 
 class StabilityChecker:
 
-    def __init__(self,boxes_by_class,model):
+    def __init__(self,boxes_by_class, propagate : BoitePropagator,model):
         self.boxes_by_class = boxes_by_class
-        self.model=model
+        self.propagate=propagate
+        self.model = model
 
     def leq(self,i1,i2):
         return all(i1[f]<=i2[f] for f in i1)
@@ -113,9 +115,6 @@ class StabilityChecker:
         fminInter = [Boite.f_min(b) for b in inter_boxes]
         fmaxInter = [Boite.f_max(b) for b in inter_boxes]
 
-        print("fmiin Inter ", fminInter)
-        print("fmax Inter ", fmaxInter)
-
         for b in fminInter:
             if not self.is_minimal(b,fmins):
                 print("min boxes broken", b)
@@ -138,24 +137,33 @@ class StabilityChecker:
         if not self.test_validation(boxes,inter_boxes):
             return False
         
-        all_results = []
+        i=1
         for b in inter_boxes:
-            result = BoitePropagator(model_json_path=self.model, boite_init=b).run()
-            all_results.extend(result)
+            tqdm.write(f"🔁 Classe {class_id} — boite {i} / {len(inter_boxes)}")
+            result = self.propagate.propagate_boite(b)
+            i+=1
+            # Regroupe les boîtes par classe prédite
+            regroupement = BoitePropagator.regrouper_boites_par_classe(result)
 
-        # Regroupe les boîtes par classe prédite
-        regroupement = BoitePropagator.regrouper_boites_par_classe(all_results)
-
-        # Si une seule classe est présente et correspond à class_id → stable
-        if len(regroupement) == 1 and class_id in regroupement:
-            return True,inter_boxes
-        else:
+            # Si une seule classe est présente et correspond à class_id → stable
+            if len(regroupement) == 1 and class_id in regroupement:
+                continue
+            c_exemple = 0
             for cls in regroupement:
                 if cls != class_id :
-                    print (regroupement[cls])
+                    print (len(regroupement[cls]))
+                    c_exemple = cls
+                    break
             print(f"⚠️ Stabilité rompue pour la classe {class_id}. Classes rencontrées : {list(regroupement.keys())}")
-            return False,None
+            print("boxe for broken", regroupement[c_exemple][1])
+            print("compare boxe",b)
 
+            boxe_in = regroupement[c_exemple][0]
+            print("boxe in",boxe_in)
+            result =predict_from_boites(self.model,boxe_in,b)
+            print(result)
+            return False,[]
+        return  True,inter_boxes
 
     
 

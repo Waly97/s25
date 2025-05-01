@@ -34,7 +34,7 @@ def infer_monotonicity(X):
 def train_best_xgboost_models(
     folder_path,
     max_depths=[2, 4, 6],
-    num_boost_rounds=[10,25, 50, 100],
+    num_boost_rounds=[500],
     auto_monotonicity=True,
     force_all_monotonicity=None 
 ):

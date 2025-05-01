@@ -77,6 +77,54 @@ class BoitePropagator:
         end = time.time()
         print(f"\n⏱ Temps total d'exécution : {end - start:.2f} secondes")
         return results
+    
+    def propagate_boite(self,boite):
+        import time
+        start = time.time()
+
+        boite_logit_pairs = [{
+            "boite": boite,
+            "logits": np.zeros(self.num_classes)
+        }]
+        for idx, (arbre_json, class_id) in enumerate(tqdm(self.arbres, desc="🌲 Arbres")):
+            input_batch = [(pair["boite"], pair["logits"]) for pair in boite_logit_pairs]
+            num_batches = ceil(len(input_batch) / self.batch_size)
+
+            tasks = [
+                (arbre_json, input_batch[i * self.batch_size:(i + 1) * self.batch_size], class_id)
+                for i in range(num_batches)
+            ]
+
+            all_results = []
+            for task in tasks:
+                all_results.append(propagate_boites_in_tree(*task))
+
+            
+
+            boite_logit_pairs = [
+                {"boite": b, "logits": logits}
+                for sublist in all_results for b, logits in sublist
+            ]
+                
+
+            # if self.verbose:
+            #     tqdm.write(f"🔁 Étape {idx + 1}/{len(self.arbres)} — {len(boite_logit_pairs)} boîtes actives")
+        self.nb_boite = len(boite_logit_pairs)
+        results = []
+        for pair in boite_logit_pairs:
+            logits = pair["logits"]
+            probas = softmax(logits)
+            pred_class = int(np.argmax(probas))
+            results.append({
+                "boite": pair["boite"],
+                "logits": logits.tolist(),
+                "probas": probas.tolist(),
+                "prediction": pred_class
+            })
+
+        end = time.time()
+        print(f"\n⏱ Temps total d'exécution : {end - start:.2f} secondes")
+        return results
 
     @staticmethod
     def regrouper_boites_par_classe(resultats):

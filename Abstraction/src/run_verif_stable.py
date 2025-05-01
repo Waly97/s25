@@ -50,7 +50,7 @@ def main():
 
 
     
-    monotony_checker = MonotonicityChecker(final_boites,model,order_classes_titanic)
+    monotony_checker = MonotonicityChecker(final_boites,buil_prop,order_classes_titanic,model)
 
     monotony_checker.verif_monotone()
     

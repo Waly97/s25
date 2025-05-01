@@ -21,62 +21,27 @@ class Boite:
     def split(self, feature, threshold):
         feature = int(feature)
         a, b = self.bornes[feature]
-        threshold = float(threshold)
 
-        # Cas spécial : borne fixe
-        if a == b:
-            if a < threshold:
-                return self, None
-            else:
-                return None, self
-
-        # Boîte totalement à gauche ou droite
-        if b < threshold:
+        # Tout à gauche
+        if b <= threshold:
             return self, None
-        if a >= threshold:
+
+        # Tout à droite
+        if a > threshold:
             return None, self
 
-        # Cas précis : b == threshold
-        if b == threshold:
-            # Créer deux copies légères de self.bornes
-            left_bornes = {k: list(v) for k, v in self.bornes.items()}
-            right_bornes = {k: list(v) for k, v in self.bornes.items()}
+        # Cas général : split réel
+        left_bornes = {k: list(v) for k, v in self.bornes.items()}
+        right_bornes = {k: list(v) for k, v in self.bornes.items()}
 
-            # Mettre à jour uniquement la feature coupée
-            if b== int(b):
-                left_bornes[feature] = [a, threshold - 1]
-                right_bornes[feature] = [threshold, threshold]
+        # Inclure threshold dans la gauche, l'exclure strictement de la droite
+        left_bornes[feature] = [a, threshold]
+        right_bornes[feature] = [np.nextafter(threshold, +np.inf), b]
 
-                left = Boite(left_bornes)
-                right = Boite(right_bornes)
-                return left, right
-            else:
-                # b est un float : exclure strictement threshold de l'intervalle gauche
-                left_bornes[feature] = [a, np.nextafter(threshold, -np.inf)]  # plus grand float < threshold
-                right_bornes[feature] = [threshold, threshold]
-
-                left = Boite(left_bornes)
-                right = Boite(right_bornes)
-                return left, right 
-
-        # Cas général
-        left_min, left_max = a, min(b, threshold)
-        right_min, right_max = max(a, threshold), b
-
-        left = None
-        right = None
-
-        if left_min < left_max:
-            left_bornes = dict(self.bornes)  
-            left_bornes[feature] = [left_min, left_max]
-            left = Boite(left_bornes)
-
-        if right_min < right_max:
-            right_bornes = dict(self.bornes)
-            right_bornes[feature] = [right_min, right_max]
-            right = Boite(right_bornes)
-
+        left = Boite(left_bornes)
+        right = Boite(right_bornes)
         return left, right
+
 
     def is_valid(self):
         """Autorise les boîtes plates (a == b)"""
@@ -113,13 +78,7 @@ class Boite:
     @staticmethod
     def creer_boite_initiale_depuis_dataset(df):
         df = pd.read_csv(df)
-        boxes = []
-        if "label" in df.columns:
-            df = df.drop(columns=["label"])
-        if "output" in df.columns:
-            df = df.drop(columns=["output"])
-        if "target" in df.columns:
-             df = df.drop(columns=["target"])
+        df=df.iloc[:,0:(len(df.columns)-1)]
         bornes = {i: [df.iloc[:, i].min(), df.iloc[:, i].max()] for i in range(df.shape[1])}
         boite = Boite(bornes)
         # boxes.append(boite)

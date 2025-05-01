@@ -5,11 +5,12 @@ import numpy as np
 import itertools
 
 class MonotonicityChecker:
-    def __init__(self, boxes, model, order_classes):
+    def __init__(self, boxes, propagate, order_classes,model):
         self.boxes = boxes
+        self.propagate= propagate
         self.model = model
         self.order_classes = order_classes
-        self.stable = StabilityChecker(boxes, model)
+        self.stable = StabilityChecker(boxes, self.propagate,model)
 
     def check_monotony_for_order(self, ordered_classes, boxes_inter_class):
         """
