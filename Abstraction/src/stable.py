@@ -131,11 +131,12 @@ class StabilityChecker:
         inter_boxes = self.generate_inter_boxe_ameliorer(min_boxes, max_boxes)
 
         if not inter_boxes:
-            return True
+            print("boxes inter for ",class_id,"is None ")
+            return True,[]
         
         # Test de validation de l'extraction des mins maxs
         if not self.test_validation(boxes,inter_boxes):
-            return False
+            return False,[]
         
         i=1
         for b in inter_boxes:
@@ -143,7 +144,7 @@ class StabilityChecker:
             result = self.propagate.propagate_boite(b)
             i+=1
             # Regroupe les boîtes par classe prédite
-            regroupement = BoitePropagator.regrouper_boites_par_classe(result)
+            regroupement= BoitePropagator.regrouper_boites_par_classe(result)
 
             # Si une seule classe est présente et correspond à class_id → stable
             if len(regroupement) == 1 and class_id in regroupement:
@@ -191,44 +192,6 @@ class StabilityChecker:
     def is_maximal(self,instance,boxe):
         return not any(self.leq_strict(instance,other) and other != instance for other in boxe)
 
-    def extract_minmax_boxe(self, boxes):
-        print(f"📦 Début de l'extraction des boîtes min/max (total : {len(boxes)})")
-
-        fmins = [Boite.f_min(b) for b in boxes]
-        fmaxs = [Boite.f_max(b) for b in boxes]
-
-        i_min = fmins.pop()
-        i_max = fmaxs.pop()
-
-        min_boxes = [i_min]
-        max_boxes = [i_max]
-
-        print("🔍 Calcul des min_boxes")
-        for b_min in tqdm(fmins, desc="⏬ min_boxes", ncols=80):
-            is_dominated = False
-            for j_min in min_boxes[:]:  # copie sécurisée
-                if self.leq(j_min, b_min):
-                    is_dominated = True
-                    break
-                elif self.leq(b_min, j_min):
-                    min_boxes.remove(j_min)
-            if not is_dominated:
-                min_boxes.append(b_min)
-
-        print("🔍 Calcul des max_boxes")
-        for b_max in tqdm(fmaxs, desc="⏫ max_boxes", ncols=80):
-            is_dominated = False
-            for j_max in max_boxes[:]:
-                if self.leq(b_max, j_max):
-                    is_dominated = True
-                    break
-                elif self.leq(j_max, b_max):
-                    max_boxes.remove(j_max)
-            if not is_dominated:
-                max_boxes.append(b_max)
-
-        print(f"✅ Extraction terminée : {len(min_boxes)} min, {len(max_boxes)} max")
-        return min_boxes, max_boxes
 
     def extract_minmax_boxes(self, boxes):
         print(f"🚀 [Numba] Extraction de {len(boxes)} boîtes")

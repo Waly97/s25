@@ -1,16 +1,11 @@
 from xgboost import XGBClassifier
 from boite import Boite
 from build_boite import  BoitePropagator
-from stable import StabilityChecker
 from monotonicity_checker import MonotonicityChecker
 import sys
-import xgboost as xgb
-import pandas as pd
-import build_boite as bb
-import json
-import multiprocessing as mp
-import cProfile
-import pstats 
+from test_validation import test_all_boxes_with_leaf_check
+
+
 
 """
 Pour le test :
@@ -27,9 +22,12 @@ def main():
     result= buil_prop.run()
 
     final_boites = buil_prop.regrouper_boites_par_classe(result)
+    print("liste des boites finqles",len(final_boites))
+
+    # test_all_boxes_with_leaf_check(model,final_boites)
     order_classes_iris = {
         "setosa": 0 ,
-        "versicolor":1 ,
+        "versicolor":1,
         "verginica":2
     }
 
@@ -50,7 +48,7 @@ def main():
 
 
     
-    monotony_checker = MonotonicityChecker(final_boites,buil_prop,order_classes_titanic,model)
+    monotony_checker = MonotonicityChecker(final_boites,buil_prop,order_classes_car_evaluation,model)
 
     monotony_checker.verif_monotone()
     

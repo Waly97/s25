@@ -132,8 +132,8 @@ class BoitePropagator:
         for resultat in resultats:
             classe = resultat["prediction"]
             boite = resultat["boite"]
+            proba =  resultat["probas"]
             boites_par_classe[classe].append(boite)
         return dict(boites_par_classe)
-
 
 

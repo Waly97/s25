@@ -9,9 +9,9 @@ def extract_instance_from_boite(boite:Boite, mode='min'):
     mode: 'min' ou 'max'
     """
     if mode == 'min':
-        return [bounds[0] for bounds in boite.bornes.values()]
+        return [int(bounds[0]) for bounds in boite.bornes.values()]
     elif mode == 'max':
-        return [bounds[1] for bounds in boite.bornes.values()]
+        return [int(bounds[1]) for bounds in boite.bornes.values()]
     else:
         raise ValueError("mode must be 'min' or 'max'")
 

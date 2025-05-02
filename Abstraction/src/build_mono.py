@@ -49,13 +49,14 @@ def train_and_save_model(csv_file):
     params = {
         'objective' : "multi:softmax",
         'num_class' : nb_classes,
+        'max_depth':2,
         'verbosity': 0,  # 0 is silent, 3 is debug
         'monotone_constraints' : '(' + ','.join([str(m) for m in feature_monotones]) + ')',# Monotony constraints
         'booster' : 'gbtree'
     }
 
     # Use CV to find the best number of trees
-    bst_cv = xgb.cv(params, dtrain, 500, nfold = 2, early_stopping_rounds=10)
+    bst_cv = xgb.cv(params, dtrain,100, nfold = 2, early_stopping_rounds=10)
 
     model = xgb.train(params=params,
                     dtrain=dtrain,

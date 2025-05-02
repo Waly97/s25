@@ -19,15 +19,15 @@ class Boite:
         return Boite(self.bornes.copy())
 
     def split(self, feature, threshold):
-        feature = int(feature)
+        feature = feature 
         a, b = self.bornes[feature]
 
         # Tout à gauche
-        if b <= threshold:
+        if b < threshold:
             return self, None
 
         # Tout à droite
-        if a > threshold:
+        if a >= threshold:
             return None, self
 
         # Cas général : split réel
