@@ -70,10 +70,10 @@ def encode_and_save_train_test(train_path, test_path, target_column=None, output
     return df_train_enc, df_test_enc
 
 encode_and_save_train_test(
-    train_path="datasets_train/wine_quility.csv",
-    test_path="datasets_train/wine_quility.csv",
+    train_path="datasets/raw/Placement.csv",
+    test_path="datasets/raw/Placement.csv",
     target_column="output",
-    output_dir="datasets_train_encoded"
+    output_dir="datasets/encoded"
 )
 
 # import pandas as pd

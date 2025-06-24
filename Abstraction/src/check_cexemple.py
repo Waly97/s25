@@ -1,6 +1,7 @@
 import xgboost as xgb
 import numpy as np
 import pandas as pd
+import numpy as np
 from boite import Boite
 
 def extract_instance_from_boite(boite:Boite, mode='min'):
@@ -9,9 +10,9 @@ def extract_instance_from_boite(boite:Boite, mode='min'):
     mode: 'min' ou 'max'
     """
     if mode == 'min':
-        return [int(bounds[0]) for bounds in boite.bornes.values()]
+        return [bounds[0] for bounds in boite.bornes.values()]
     elif mode == 'max':
-        return [int(bounds[1]) for bounds in boite.bornes.values()]
+        return [bounds[1] for bounds in boite.bornes.values()]
     else:
         raise ValueError("mode must be 'min' or 'max'")
 
@@ -33,9 +34,10 @@ def predict_from_boites(m, boite1, boite2, feature_names=None):
     feature_names = [re.sub(r'[^A-Za-z0-9_]', '_', str(f)) for f in feature_names]
 
     # Création des 3 instances
-    x1 = extract_instance_from_boite(boite1, mode='min')
+    x1 = extract_instance_from_boite(boite1, mode='max')
     x2 = extract_instance_from_boite(boite2, mode='min')
     x3 = extract_instance_from_boite(boite2, mode='max')
+
 
     # Prédictions une par une
     pred1 = model.predict(xgb.DMatrix([x1], feature_names=feature_names))[0]
@@ -47,3 +49,14 @@ def predict_from_boites(m, boite1, boite2, feature_names=None):
         'boite2_min': (x2, pred2),
         'boite2_max': (x3, pred3)
     }
+
+def to_String(result):
+    if result:
+        s1= "instance min, a"+ str(result["boite2_min"]) + "\n"
+        s2 = "instance between, b" + str(result["boite1_min"])+"\n"
+        s3= "instance max, c " +str(result["boite2_max"])+"\n"
+        s4= "CONCLUSION \n"
+        s5="We have a < b < c and k(a) = k(c) or k(a)!= k(b) so we conclude that the model isn't stable"
+        return s1 + s2 + s3 + s4 + s5
+    return "All is ok"
+
