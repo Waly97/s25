@@ -1,0 +1,24 @@
+==== Résultats de l'expérimentation ====
+
+Dataset : Placement_encoded.csv
+Modèle  : Placement_encoded.json
+- Stabilité : OUI
+- Taux Stabilité : 1.0
+- Nombre de features : 10
+- Nombre de boîtes : 4828
+Temps d'execution : 48.50417709350586
+- Taille du modèle : 154.53 Ko
+contre exemple : 
+ All is Ok  
+----------------------------------------
+Dataset : car_test.csv
+Modèle  : car_test.json
+- Stabilité : OUI
+- Taux Stabilité : 1.0
+- Nombre de features : 21
+- Nombre de boîtes : 1728
+Temps d'execution : 36.75852918624878
+- Taille du modèle : 1.09 Ko
+contre exemple : 
+ All is Ok  
+----------------------------------------

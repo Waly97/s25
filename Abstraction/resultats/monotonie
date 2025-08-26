@@ -1,0 +1,58 @@
+==== Résultats de l'expérimentation ====
+
+Table de données : CPU.csv
+Modèle  : CPU.json
+- Monotonie : OUI
+- Nombre de features : 6
+- Nombre de boîtes : 5306
+Temps d'execution : 145.5905909538269
+- Taille du modèle : 162.48 Ko
+----------------------------------------
+Table de données : CarEvaluation.csv
+Modèle  : CarEvaluation.json
+- Monotonie : NON
+- Nombre de features : 6
+- Nombre de boîtes : 1713
+Temps d'execution : 327.3235671520233
+- Taille du modèle : 1940.16 Ko
+----------------------------------------
+Table de données : ERA.csv
+Modèle  : ERA.json
+- Monotonie : NON
+- Nombre de features : 4
+- Nombre de boîtes : 22027
+Temps d'execution : 323.1449279785156
+- Taille du modèle : 383.03 Ko
+----------------------------------------
+Table de données : ESL.csv
+Modèle  : ESL.json
+- Monotonie : OUI
+- Nombre de features : 4
+- Nombre de boîtes : 2100
+Temps d'execution : 55.98278188705444
+- Taille du modèle : 1375.39 Ko
+----------------------------------------
+Table de données : LEV.csv
+Modèle  : LEV.json
+- Monotonie : NON
+- Nombre de features : 4
+- Nombre de boîtes : 622
+Temps d'execution : 19.421004056930542
+- Taille du modèle : 788.02 Ko
+----------------------------------------
+Table de données : Mammographic.csv
+Modèle  : Mammographic.json
+- Monotonie : Non
+- Nombre de features : 5
+- Nombre de boîtes : 3833
+Temps d'execution : 83.28678917884827
+- Taille du modèle : 203.04 Ko
+----------------------------------------
+Table de données : placement.csv
+Modèle  : placement.json
+- Monotonie : NON
+- Nombre de features : 7
+- Nombre de boîtes : 28784
+Temps d'execution : 1140.0042099952698
+- Taille du modèle : 66.07 Ko
+----------------------------------------
