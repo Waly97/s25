@@ -15,7 +15,7 @@ panda: pip innstall panda
 Le développement de ce projet est réalisé en Python. 
 Tout le code source se trouve dans le dossier src. 
 
-Pour effectuer des tests sur les modèles, utilisez les fichiers situés dans le dossier src/expériences. 
+Pour effectuer des tests sur les modèles, utilisez les fichiers situés dans le dossier Abstraction/src/expériences. 
 Les instructions d’exécution sont indiquées en en-tête de chaque fichier d’expérience.
 
 
