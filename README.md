@@ -1,5 +1,5 @@
 # s25
-Ce projet a pour objectif la vérification de la stabilité et la monotonie des modèle d'arbre de décision boosté, notamment XGBOOST et LightGBM.
+Ce projet a pour objectif la vérification de la stabilité et la monotonie des modèles d'arbres de décision boostés, notamment XGBOOST et LightGBM.
 
 # Depandence: 
 Pour compiler et exécuter ce code il sera necéssaire d'installer certaines bibliothéque: 
