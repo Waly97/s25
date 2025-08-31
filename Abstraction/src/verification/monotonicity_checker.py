@@ -1,4 +1,4 @@
-from boite import Boite
+from  src.verification.boite import Boite
 from src.verification.stable_improve import StabilityChecker
 import numpy as np
 from collections import defaultdict
@@ -15,44 +15,75 @@ class MonotonicityChecker:
         self.stable = StabilityChecker(boxes, self.propagate,model)
 
     def check_monotony_for_order(self,boxes_inter_class):
-        for i in range(len(boxes_inter_class) - 2):
+        for i in range(len(boxes_inter_class) - 1):
             boxes_inter_c1 = boxes_inter_class[i]
-            boxes_inter_c2 = boxes_inter_class[i+1]
+            for j in range(i+1,len(boxes_inter_class)-1):
+                boxes_inter_c2 = boxes_inter_class[j]
 
-            if not boxes_inter_c1 or not boxes_inter_c2:
-                continue
+                if not boxes_inter_c1 or not boxes_inter_c2:
+                    continue
 
-            features = list(Boite.f_min(boxes_inter_c1[0]).keys())
-            fmins = [Boite.f_min(b) for b in boxes_inter_c2]
-            fmaxs = [Boite.f_max(b) for b in boxes_inter_c1]
+                features = list(Boite.f_min(boxes_inter_c1[0]).keys())
+                fmins = [Boite.f_min(b) for b in boxes_inter_c1]
+                fmaxs = [Boite.f_max(b) for b in boxes_inter_c2]
 
-            fmins_array = np.array([Boite.to_array(f, features) for f in fmins])
-            fmaxs_array = np.array([Boite.to_array(f, features) for f in fmaxs])
+                fmins_array = np.array([Boite.to_array(f, features) for f in fmins])
+                fmaxs_array = np.array([Boite.to_array(f, features) for f in fmaxs])
 
-            for fmax in fmaxs_array:
                 for fmin in fmins_array:
-                    if not leq_numba(fmax, fmin):
-                        return False
+                    for fmax in fmaxs_array:
+                        if not leq_numba(fmin, fmax):
+                            return False
         return True
 
    
 
 
-    def check_monotony_pairwise(self,c1_boxes, c2_boxes,cls,f1):
-        """Vérifie si c1 ≤ c2 pour toutes les boîtes."""
-        fmins = [Boite.f_min(b) for b in c2_boxes]
-        fmaxs = [Boite.f_max(b) for b in c1_boxes]
+    def check_monotony_pairwise(self, c1_boxes, c2_boxes, cls, f1):
+        """
+        Vérifie (critère conservatif) : min(B_i) < max(B_j) pour toutes les paires comparables.
+        - Si aucune paire comparable n'existe entre min(B_i) et max(B_j) -> False.
+        - Ignore les paires incomparables.
+        Retourne (bool, (contre_ex_min, contre_ex_max)) avec les valeurs float si violation.
+        """
+        # 1) Extraire les mins de c1 et les maxs de c2
+        fmins = [Boite.f_min(b) for b in c1_boxes]
+        fmaxs = [Boite.f_max(b) for b in c2_boxes]
 
-        fmins_array = np.array([Boite.to_array(f, f1) for f in fmins])
-        fmaxs_array = np.array([Boite.to_array(f, f1) for f in fmaxs])
+        # 2) Les convertir dans le même ordre de features f1
+        fmins_arr = [np.asarray(Boite.to_array(f, f1)) for f in fmins]
+        fmaxs_arr = [np.asarray(Boite.to_array(f, f1)) for f in fmaxs]
 
-        for fmax in fmaxs_array:
-            for fmin in fmins_array:
-                if not leq_numba(fmax, fmin):
-                    minval= [float(val) for val in fmin]
-                    maxval=[float(val) for val in fmax]
-                    return False,(minval,maxval)
-        return True,()
+        # Petits utilitaires
+        def comparable(u, v):
+            return leq_numba(u, v) or leq_numba(v, u)
+
+        def strict_less(u, v):
+            # u < v  <=>  u <= v  ET  non (v <= u)
+            return leq_numba(u, v) and not leq_numba(v, u)
+
+        # 3) Filtrer les fmins qui ont au moins un fmax comparable (optimisation)
+        comparable_mins = []
+        any_comparable = False
+        for m in fmins_arr:
+            has_comp = any(comparable(m, M) for M in fmaxs_arr)
+            if has_comp:
+                comparable_mins.append(m)
+                any_comparable = True
+
+        # 4) Si aucune paire comparable n'existe, on ne peut pas conclure c1 <= c2 => False
+        if not any_comparable:
+            return False, ()
+
+        # 5) Vérifier la contrainte seulement sur les paires comparables
+        for m in comparable_mins:
+            for M in fmaxs_arr:
+                if comparable(m, M) and not strict_less(m, M):
+                    # Contre-exemple : soit M <~ m, soit égalité complète
+                    return False, ([float(x) for x in m], [float(x) for x in M])
+
+        return True, ()
+
     
     def build_monotony_matrix(self,classes, boxes_inter_class):
         n = len(classes)

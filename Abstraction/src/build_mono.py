@@ -95,7 +95,7 @@ def train_and_save_model(csv_file):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage : python build_model_with_search_and_curve.py <csv_folder>")
+        print("Usage : python build_mono.py <csv_folder>")
         sys.exit(1)
 
     csv_folder = sys.argv[1]

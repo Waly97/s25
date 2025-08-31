@@ -100,7 +100,7 @@ def _parallel_propagate(args):
     return propagator.propagate([boite])
 
 class BoitePropagator:
-    def __init__(self, model_bin_path, boite_init, batch_size=2000,group_one_hot=None,verbose=False):
+    def __init__(self, model_bin_path, boite_init, batch_size=2000,group_one_hot=None,verbose=True):
         self.model_bin_path = model_bin_path
         self.boite_init = boite_init
         self.batch_size = batch_size
