@@ -13,10 +13,10 @@ panda: pip innstall panda
 
 # Implementation : 
 Le développement de ce projet est réalisé en Python. 
-Tout le code source se trouve dans le dossier src. 
+Tout le code source se trouve dans les dossiers src. 
 
-Pour effectuer des tests sur les modèles, utilisez les fichiers situés dans le dossier Abstraction/src/expériences. 
-Les instructions d’exécution sont indiquées en en-tête de chaque fichier d’expérience.
+Pour effectuer des tests sur les modèles, utilisez les fichiers situés dans le dossier Abstraction/src/expériences ou LightGBM/src/experience. 
+Les instructions d’exécution sont indiquées en en-tête de chaque fichier d’expérience .
 
 
 
