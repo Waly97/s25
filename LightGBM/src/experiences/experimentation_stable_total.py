@@ -1,12 +1,21 @@
-import os
-import json
+import sys, os
+# Ajouter la RACINE du projet (deux niveaux au-dessus de ce fichier) au PYTHONPATH
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..","..", "..")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 import pandas as pd
-import time
-import sys
-from boite import Boite
-from propagator import BoitePropagator
-from stable import StabilityChecker
-from monotonicity_checker import MonotonicityChecker
+from Abstraction.src.verification.boite import Boite
+from src.verification.propagator import BoitePropagator
+from Abstraction.src.verification.stable import StabilityChecker
+
+
+
+"""
+Usage:
+
+python3 src/experiences/experience_monotonie.py 'dossier jeux de données' 'dossier model'
+
+Exemple : python3 src/experiences/experience_stable_total.py Dataset model
+"""
 
 
 def extract_instance_from_boite(boite:Boite, mode='min'):
@@ -23,7 +32,6 @@ def extract_instance_from_boite(boite:Boite, mode='min'):
 
 def printCE(c_exemple):
     if c_exemple is not None :
-        print(c_exemple)
         class_id = c_exemple[0]
         broken = c_exemple[1]
         boite = broken[0]
@@ -88,6 +96,7 @@ def tester_un_modele(dataset_path, model_path):
         "dataset": os.path.basename(dataset_path),
         "model": os.path.basename(model_path),
         "stable": stable,
+        "taux_stability":stable_checker.taux_stability,
         "c_exemple": c_exemple,
         # "monotone": monotone,
         "features": nb_features,
@@ -97,7 +106,7 @@ def tester_un_modele(dataset_path, model_path):
     }
 
 
-def experimentation_batch(dossier_datasets, dossier_models,chemin_resultat="resultas"):
+def experimentation_batch(dossier_datasets, dossier_models,chemin_resultat="rasultats/resultat_stable"):
     """
     Lance l'expérimentation sur tous les datasets et modèles correspondants.
     """
@@ -120,6 +129,7 @@ def experimentation_batch(dossier_datasets, dossier_models,chemin_resultat="resu
             f.write(f"Dataset : {r['dataset']}\n")
             f.write(f"Modèle  : {r['model']}\n")
             f.write(f"- Stabilité : {'OUI' if r['stable'] else 'NON'}\n")
+            f.write(f"- Taux Stabilité : {r['taux_stability']}\n")
             # f.write(f"- Monotonie : {'OUI' if r['monotone'] else 'NON'}\n")
             f.write(f"- Nombre de features : {r['features']}\n")
             f.write(f"- Nombre de boîtes : {r['boites']}\n")

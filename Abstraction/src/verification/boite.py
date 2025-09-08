@@ -21,7 +21,7 @@ class Boite:
     def copy(self):
         return Boite(self.bornes.copy())
 
-    def split(self, feature, threshold):
+    def splitXGBoost(self, feature, threshold):
         a, b = self.bornes[feature]
         # Tout à gauche
         if b < threshold:
@@ -43,23 +43,29 @@ class Boite:
             right_bornes[feature] = [threshold, b] 
 
         return Boite(left_bornes), Boite(right_bornes)
+    
+    def splitLightGBM(self,feature, threshold):
+        a, b = self.bornes[feature]
+        # Tout à gauche
+        if b <= threshold:
+            return self, None
 
-    # def split(self, feature, threshold):
-    #     a, b = self.bornes[feature]
+        # Tout à droite
+        if a > threshold:
+            return None, self
 
-    #     if b < threshold:
-    #         return self, None
+        # Cas général : split réel
+        left_bornes = dict(self.bornes)
+        right_bornes = dict(self.bornes)
 
-    #     if a >= threshold:
-    #         return None, self
+        if (a == int(a)):
+            left_bornes[feature] = [a, threshold]  # prendre l'entier oou le réel qui vient avant le seuil
+            right_bornes[feature] = [threshold + 1, b]
+        else:
+            left_bornes[feature] = [a, threshold]  # prendre l'entier oou le réel qui vient avant le seuil
+            right_bornes[feature] = [np.nextafter(np.float32(threshold), +np.float32(np.inf)), b] 
 
-    #     left_bornes = dict(self.bornes)
-    #     right_bornes = dict(self.bornes)
-
-    #     left_bornes[feature] = [a, np.nextafter(threshold, -np.inf)]
-    #     right_bornes[feature] = [threshold, b]
-
-    #     return Boite(left_bornes), Boite(right_bornes)
+        return Boite(left_bornes), Boite(right_bornes)
 
     def is_valid(self):
         return all(a <= b for a, b in self.bornes.values())
@@ -121,4 +127,4 @@ class Boite:
         return np.array([b[f] for f in feature_order], dtype=np.float32)
     
     def volume(self):
-        return np.prod([max(b - a, 1e-10) for a, b in self.bornes.values()])
+        return np.prod([(b - a) for a, b in self.bornes.values()])

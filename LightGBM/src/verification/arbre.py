@@ -1,4 +1,28 @@
-from boite import Boite
+from Abstraction.src.verification.boite import Boite
+import numpy as np
+
+def split(boite,feature, threshold):
+        a, b = boite.bornes[feature]
+        # Tout à gauche
+        if b <= threshold:
+            return boite, None
+
+        # Tout à droite
+        if a > threshold:
+            return None, boite
+
+        # Cas général : split réel
+        left_bornes = dict(boite.bornes)
+        right_bornes = dict(boite.bornes)
+
+        if (a == int(a)):
+            left_bornes[feature] = [a, threshold]  # prendre l'entier oou le réel qui vient avant le seuil
+            right_bornes[feature] = [threshold + 1, b]
+        else:
+            left_bornes[feature] = [a, threshold]  # prendre l'entier oou le réel qui vient avant le seuil
+            right_bornes[feature] = [np.nextafter(np.float32(threshold), +np.float32(np.inf)), b] 
+
+        return Boite(left_bornes), Boite(right_bornes)
 
 def propagate_boite_in_tree(tree, boite):
     """
@@ -24,7 +48,7 @@ def _recursive_partition_lightgbm(node, boite):
     threshold = node['threshold']
 
     # LightGBM : gauche = <= threshold
-    left_boite, right_boite = boite.split(feature_index, threshold)
+    left_boite, right_boite = boite.splitLightGBM(feature_index, threshold)
 
     results = []
     if left_boite and Boite.is_valid(left_boite):

@@ -3,8 +3,8 @@ import numpy as np
 from math import ceil
 from tqdm import tqdm
 from collections import defaultdict, Counter
-from boite import Boite
-from arbre import propagate_boites_in_tree  # Ce module doit faire uniquement la partition des boîtes
+from Abstraction.src.verification.boite import Boite
+from src.verification.arbre import propagate_boites_in_tree  # Ce module doit faire uniquement la partition des boîtes
 import lightgbm as lgb
 from itertools import product
 

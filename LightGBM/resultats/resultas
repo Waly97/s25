@@ -1,0 +1,88 @@
+==== Résultats de l'expérimentation ====
+
+Dataset : CPU.csv
+Modèle  : CPU.txt
+- Stabilité : OUI
+- Taux Stabilité : 0.9781608068874436
+- Nombre de features : 6
+- Nombre de boîtes : 32911
+Temps d'execution : 635.4931361675262
+- Taille du modèle : 127.17 Ko
+contre exemple : 
+ instance min, a = ([17.0, 64.0, 64.0, 0.0, 0.0, 0.0], 0)
+instance between, b = ([17.0, 64.0, 64.0, np.float32(120.00001), 0.0, 153.00000000000003], 2)
+instance max, c = ([1500.0, 4500.0, 28000.0, 256.0, 10.0, 176.0], 0)
+CONCLUSION 
+We have a < b < c and k(a) = k(c) or k(a)!= k(b) so we conclude that the model isn't stable 
+----------------------------------------
+Dataset : CarEvaluation.csv
+Modèle  : CarEvaluation.txt
+- Stabilité : NON
+- Taux Stabilité : 0.2607666053229173
+- Nombre de features : 6
+- Nombre de boîtes : 1077
+Temps d'execution : 137.6337389945984
+- Taille du modèle : 4402.94 Ko
+contre exemple : 
+ instance min, a = ([1.0, 1.0, 2.0, 2.0, 1.0, 1.0], 0)
+instance between, b = ([1.0, 1.0, 2.0, 4.0, 1.0, 2.5], 1)
+instance max, c = ([4.0, 4.0, 6.0, 5.0, 3.0, 3.0], 0)
+CONCLUSION 
+We have a < b < c and k(a) = k(c) or k(a)!= k(b) so we conclude that the model isn't stable 
+----------------------------------------
+Dataset : ERA.csv
+Modèle  : ERA.txt
+- Stabilité : NON
+- Taux Stabilité : -9.107858899589239
+- Nombre de features : 4
+- Nombre de boîtes : 25108
+Temps d'execution : 1171.0903370380402
+- Taille du modèle : 227.44 Ko
+contre exemple : 
+ instance min, a = ([0.0, 0.0, 0.0, 0.0], 2)
+instance between, b = ([0.0, 0.0, 0.0, np.float32(4.5000005)], 0)
+instance max, c = ([14.0, 14.0, 4.5, 7.5], 2)
+CONCLUSION 
+We have a < b < c and k(a) = k(c) or k(a)!= k(b) so we conclude that the model isn't stable 
+----------------------------------------
+Dataset : ESL.csv
+Modèle  : ESL.txt
+- Stabilité : NON
+- Taux Stabilité : -0.5197521182718093
+- Nombre de features : 4
+- Nombre de boîtes : 1960
+Temps d'execution : 195.47808694839478
+- Taille du modèle : 854.07 Ko
+contre exemple : 
+ instance min, a = ([0.0, 0.0, 2.0, 7.500000476837158], 8)
+instance between, b = ([0.0, np.float32(6.5000005), 2.0, 7.500000476837158], 6)
+instance max, c = ([9.0, 9.0, 8.0, 8.0], 8)
+CONCLUSION 
+We have a < b < c and k(a) = k(c) or k(a)!= k(b) so we conclude that the model isn't stable 
+----------------------------------------
+Dataset : LEV.csv
+Modèle  : LEV.txt
+- Stabilité : NON
+- Taux Stabilité : -1.3710323160267146
+- Nombre de features : 4
+- Nombre de boîtes : 512
+Temps d'execution : 51.38551592826843
+- Taille du modèle : 517.11 Ko
+contre exemple : 
+ instance min, a = ([0.0, 0.0, 0.0, 0.0], 0)
+instance between, b = ([0.0, 1.0, 0.0, 0.0], 1)
+instance max, c = ([1.0000000180025095e-35, 3.5, 1.5, 1.0000000180025095e-35], 0)
+CONCLUSION 
+We have a < b < c and k(a) = k(c) or k(a)!= k(b) so we conclude that the model isn't stable 
+----------------------------------------
+Dataset : Mammographic.csv
+Modèle  : Mammographic.txt
+- Stabilité : OUI
+- Taux Stabilité : 1.0
+- Nombre de features : 5
+- Nombre de boîtes : 508
+Temps d'execution : 7.71594500541687
+- Taille du modèle : 44.61 Ko
+contre exemple : 
+ All is Ok  
+----------------------------------------

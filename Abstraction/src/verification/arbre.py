@@ -16,7 +16,7 @@ def propagate_boite_in_tree(tree, boite, node_id=0):
     feature_index = split_indices[node_id]
     threshold = split_conditions[node_id]
 
-    left_boite, right_boite = boite.split(feature_index, threshold)
+    left_boite, right_boite = boite.splitXGBoost(feature_index, threshold)
 
     results = []
     if left_boite and Boite.is_valid(left_boite):
