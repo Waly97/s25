@@ -12,9 +12,9 @@ from Abstraction.src.verification.stable import StabilityChecker
 """
 Usage:
 
-python3 src/experiences/experience_monotonie.py 'dossier jeux de données' 'dossier model'
+python3 LightGBM/src/experiences/experience_monotonie.py 'dossier jeux de données' 'dossier model'
 
-Exemple : python3 src/experiences/experience_stable_total.py Dataset model
+Exemple : python3 LightGBM/src/experiences/experience_stable_total.py Dataset model
 """
 
 

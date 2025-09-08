@@ -16,9 +16,9 @@ from src.experiences.verif_c_exemple import predict
 """
 Usage:
 
-python3 src/experiences/experience_monotonie.py 'dossier jeux de données' 'dossier model'
+python3 LigthGBM/src/experiences/experience_monotonie.py 'dossier jeux de données' 'dossier model'
 
-Exemple : python3 src/experience_monotonie.py Dataset model
+Exemple : python3 LightGBM/src/experience_monotonie.py Dataset models
 """
 
 def tester_un_modele(dataset_path, model_path):

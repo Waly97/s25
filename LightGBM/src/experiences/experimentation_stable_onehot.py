@@ -13,9 +13,9 @@ from Abstraction.src.verification.utils import detect_onehot_groups_from_dataset
 """
 Usage:
 
-python3 src/experiences/experience_one_hot.py 'dossier jeux de données one hot' 'dossier model'
+python3 LightGBM/src/experiences/experience_one_hot.py 'dossier jeux de données one hot' 'dossier model'
 
-Exemple : python3 src/experiences/experimentation_stable_onehot.py dataset model_one_hot
+Exemple : python3 LightGBM/src/experiences/experimentation_stable_onehot.py dataset model_one_hot
 """
 
 
