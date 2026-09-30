@@ -53,7 +53,6 @@ class MonotonicityChecker:
         fmins = [Boite.f_min(b) for b in c1_boxes]
         fmaxs = [Boite.f_max(b) for b in c2_boxes]
 
-        # 2) Les convertir dans le même ordre de features f1
         fmins_arr = [np.asarray(Boite.to_array(f, f1)) for f in fmins]
         fmaxs_arr = [np.asarray(Boite.to_array(f, f1)) for f in fmaxs]
 
@@ -65,7 +64,6 @@ class MonotonicityChecker:
             # u < v  <=>  u <= v  ET  non (v <= u)
             return leq_numba(u, v) and not leq_numba(v, u)
 
-        # 3) Filtrer les fmins qui ont au moins un fmax comparable (optimisation)
         comparable_mins = []
         any_comparable = False
         for m in fmins_arr:

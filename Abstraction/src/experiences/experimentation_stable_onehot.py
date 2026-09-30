@@ -13,7 +13,7 @@ from src.verification.utils import detect_onehot_groups_from_dataset
 """
 Usage:
 
-python3 src/experiences/experience_one_hot.py 'dossier jeux de données one hot' 'dossier model'
+python3 src/experiences/experience_one_hot.py 'folder of datasets encoded in one hot' 'folder of models'
 
 Exemple : python3 src/experiences/experimentation_stable_onehot.py dataset model_one_hot
 """
@@ -21,8 +21,8 @@ Exemple : python3 src/experiences/experimentation_stable_onehot.py dataset model
 
 def extract_instance_from_boite(boite: Boite, mode='min'):
     """
-    Extrait une instance (vecteur) à partir d'une boîte.
-    mode: 'min' ou 'max'
+    Extracts an instance (vector) from a box.
+    mode: 'min' or 'max'
     """
     if mode == 'min':
         return [bounds[0] for bounds in boite.bornes.values()]
@@ -56,7 +56,7 @@ def tester_un_modele(dataset_path, model_path):
     """
     Teste stabilité + monotonie pour un modèle et retourne les résultats.
     """
-    print(f"--- Test sur modèle {os.path.basename(model_path)} ---")
+    print(f"--- Test over the model {os.path.basename(model_path)} ---")
     star = time.time()
 
     # Charger dataset et modèle
@@ -101,14 +101,14 @@ def tester_un_modele(dataset_path, model_path):
         "c_exemple": c_exemple,
         "features": nb_features,
         "time_execution": (end - star),
-        "boites": nb_boites,
+        "boxes": nb_boites,
         "model_size_kb": round(model_size, 2),
     }
 
 
 def experimentation_batch(dossier_datasets, dossier_models, chemin_resultat="resultas_one_hot"):
     """
-    Lance l'expérimentation sur tous les datasets et modèles correspondants.
+    Run the experiment on all corresponding datasets and models.
     """
     fichiers_datasets = sorted([f for f in os.listdir(dossier_datasets) if f.endswith('.csv')])
     fichiers_models = sorted([f for f in os.listdir(dossier_models) if f.endswith('.json')])
@@ -124,28 +124,27 @@ def experimentation_batch(dossier_datasets, dossier_models, chemin_resultat="res
 
     # Enregistrement dans un fichier (UTF-8 pour la compatibilité)
     with open(chemin_resultat, "w", encoding="utf-8") as f:
-        f.write("==== Résultats de l'expérimentation ====\n\n")
+        f.write("==== RResults of the experiment ====\n\n")
         for r in resultats:
             f.write(f"Dataset : {r['dataset']}\n")
-            f.write(f"Modèle  : {r['model']}\n")
-            f.write(f"- Stabilité : {'OUI' if r['stable'] else 'NON'}\n")
-            f.write(f"- Taux Stabilité : {r['taux_stability']}\n")
-            f.write(f"- Nombre de features : {r['features']}\n")
-            f.write(f"- Nombre de boîtes : {r['boites']}\n")
-            f.write(f"Temps d'execution : {r['time_execution']}\n")
-            f.write(f"- Taille du modèle : {r['model_size_kb']} Ko\n")
-            f.write(f"contre exemple : \n {printCE(r['c_exemple'])} \n")
+            f.write(f"Model  : {r['model']}\n")
+            f.write(f"- Stability : {'YES' if r['stable'] else 'NO'}\n")
+            f.write(f"- Stability Rate : {r['taux_stability']}\n")
+            f.write(f"- Number of features : {r['features']}\n")
+            f.write(f"- Number of boxes : {r['boites']}\n")
+            f.write(f"Execution time : {r['time_execution']}\n")
+            f.write(f"- Model size : {r['model_size_kb']} Ko\n")
+            f.write(f"Counter example : \n {printCE(r['c_exemple'])} \n")
             f.write("-" * 40 + "\n")
 
-    print(f"\n✅ Résultats sauvegardés dans {chemin_resultat}")
-
+    print(f"\n✅ RResults saved in {chemin_resultat}")
 
 def parse_args(argv=None):
-    parser = argparse.ArgumentParser(description="Tester stabilité/monotonie de modèles")
-    parser.add_argument("datasets_dir", help="Dossier contenant les .csv")
-    parser.add_argument("models_dir", help="Dossier contenant les .json")
+    parser = argparse.ArgumentParser(description="Test stability/monotonicity of models")
+    parser.add_argument("datasets_dir", help="Folder containing the .csv files")
+    parser.add_argument("models_dir", help="Folder containing the .json files")
     parser.add_argument("-o", "--output", default="resultas_one_hot",
-                        help="Chemin du fichier de résultats (par défaut: resultas_one_hot)")
+                        help="Path to the results file (default: resultas_one_hot)")
     return parser.parse_args(argv)
 
 

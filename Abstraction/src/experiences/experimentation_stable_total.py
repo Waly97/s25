@@ -11,16 +11,17 @@ from src.verification.stable import StabilityChecker
 """
 Usage:
 
-python3 src/experiences/experience_monotonie.py 'dossier jeux de données' 'dossier model'
+python3 src/experiences/experience_monotonie.py 'folder of datasets encoded in one hot' 'folder of models'
 
-Exemple : python3 src/experiences/experience_stable_total.py Dataset model
+Example : python3 src/experiences/experience_stable_total.py Dataset model
 """
 
 
 def extract_instance_from_boite(boite:Boite, mode='min'):
     """
-    Extrait une instance (vecteur) à partir d'une boîte.
-    mode: 'min' ou 'max'
+    Extracts an instance (vector) from a box.
+    mode: 'min' or 'max'
+    
     """
     if mode == 'min':
         return [bounds[0] for bounds in boite.bornes.values()]
@@ -54,9 +55,9 @@ def printCE(c_exemple):
 
 def tester_un_modele(dataset_path, model_path):
     """
-    Teste stabilité + monotonie pour un modèle et retourne les résultats.
+    Test stability + monotonicity for a model and return the results.
     """
-    print(f"--- Test sur modèle {os.path.basename(model_path)} ---")
+    print(f"--- Test over the model {os.path.basename(model_path)} ---")
     import time
     star =  time.time()
     # Charger dataset et modèle
@@ -80,9 +81,6 @@ def tester_un_modele(dataset_path, model_path):
     stable, _ = stable_checker.verif_stable()
     end = time.time()
 
-    # # Vérification monotonie
-    # monotone_checker = MonotonicityChecker(final_boites, model_path, order_classes)
-    # monotone = monotone_checker.verif_monotone()
 
     c_exemple = None
     if stable_checker.contre_exemple:
@@ -100,7 +98,7 @@ def tester_un_modele(dataset_path, model_path):
         # "monotone": monotone,
         "features": nb_features,
         "time_execution": (end -star),
-        "boites": nb_boites,
+        "boxes": nb_boites,
         "model_size_kb": round(model_size, 2)
     }
 
@@ -123,22 +121,21 @@ def experimentation_batch(dossier_datasets, dossier_models,chemin_resultat="resu
 
     # Enregistrement dans un fichier
     with open(chemin_resultat, "w") as f:
-        f.write("==== Résultats de l'expérimentation ====\n\n")
+        f.write("==== RResults of the experiment ====\n\n")
         for r in resultats:
             f.write(f"Dataset : {r['dataset']}\n")
-            f.write(f"Modèle  : {r['model']}\n")
-            f.write(f"- Stabilité : {'OUI' if r['stable'] else 'NON'}\n")
-            f.write(f"- Taux Stabilité : {r['taux_stability']}\n")
+            f.write(f"Model  : {r['model']}\n")
+            f.write(f"- Stability : {'YES' if r['stable'] else 'NO'}\n")
+            f.write(f"- Stability Rate : {r['taux_stability']}\n")
             # f.write(f"- Monotonie : {'OUI' if r['monotone'] else 'NON'}\n")
-            f.write(f"- Nombre de features : {r['features']}\n")
-            f.write(f"- Nombre de boîtes : {r['boites']}\n")
-            f.write(f"Temps d'execution : {r['time_execution']}\n")
-            f.write(f"- Taille du modèle : {r['model_size_kb']} Ko\n")
-            f.write(f"contre exemple : \n {printCE(r['c_exemple'])} \n")
+            f.write(f"- Number of features : {r['features']}\n")
+            f.write(f"- Number of boxes : {r['boxes']}\n")
+            f.write(f"Execution time : {r['time_execution']}\n")
+            f.write(f"- Model size : {r['model_size_kb']} Ko\n")
+            f.write(f"Counter example : \n {printCE(r['c_exemple'])} \n")
             f.write("-" * 40 + "\n")
 
-    print(f"\n✅ Résultats sauvegardés dans {chemin_resultat}")
-
+    print(f"\n✅ RResults saved in {chemin_resultat}")
 
 if sys.argv[1] and sys.argv[2] :
     experimentation_batch(sys.argv[1],sys.argv[2])

@@ -17,7 +17,7 @@ Usage:
 
 python3 src/experiences/experience_monotonie.py 'dossier jeux de données' 'dossier model'
 
-Exemple : python3 src/experience_monotonie.py Dataset model
+Exemple : python3 src/experiences/experience_monotonie.py Dataset model
 """
 
 def tester_un_modele(dataset_path, model_path):

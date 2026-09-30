@@ -266,6 +266,7 @@ class StabilityChecker:
         is_stable,boxes = self._verif_stable_intra_class()
         if is_stable :
             print("The model is stable")
+            print("The stability rate is : ", self.taux_stability)
             return True,boxes
         else:
             print("The model isn't stable")
