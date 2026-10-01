@@ -1,0 +1,38 @@
+============================================
+CORRECTED BOX MODEL EXPERIMENT
+============================================
+
+Dataset: Datasets/CPU.csv
+Original model: models/CPU.json
+Corrected model: models_box/CPU/CPU_box.json
+
+STABILITY
+--------------------------------------------
+- Formal stability of original model: NO
+- Experimental stability criterion (>= 90% for every class): YES
+- Average stability rate: 99.80%
+- Stability rate by class:
+    Class 0: 100.00%
+    Class 1: 99.59%
+
+ACCURACY
+--------------------------------------------
+- Original model accuracy: 99.52%
+- Corrected model accuracy: 98.56%
+- Accuracy difference (corrected - original): -0.96%
+
+MODEL SIZE
+--------------------------------------------
+- Original model size: 162.48 KB
+- Corrected model size: 9.09 KB
+- Size reduction: 153.39 KB
+- Size reduction percentage: 94.41%
+
+EXECUTION
+--------------------------------------------
+- Total execution time: 92.62 s
+
+SUMMARY
+--------------------------------------------
+The original classifier has a higher accuracy than the corrected box-based model.
+The corrected box-based classifier is smaller than the original model.
